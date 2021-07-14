@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UserModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="administrator_id" />
+    </Key>
+    <Property Name="administrator_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adminstrator_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="adminstrator_Age" Type="Int32" Nullable="false" />
+    <Property Name="adminstrator_Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="adminstrator_job" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Administr__user___29572725" FromRole="Administrator" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="parent_id" />
+    </Key>
+    <Property Name="parent_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="father_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="f_National_ID" Type="Int32" Nullable="false" />
+    <Property Name="mother_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="m_National_ID" Type="Int32" Nullable="false" />
+    <Property Name="mother_job" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="father_job" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone_Number" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Parent__user_id__267ABA7A" FromRole="Parent" ToRole="Users" />
+    <NavigationProperty Name="Students" Relationship="Self.FK__Student__parent___440B1D61" FromRole="Parent" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="student_ID" />
+    </Key>
+    <Property Name="student_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="student_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="student_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="student_Age" Type="Int32" Nullable="false" />
+    <Property Name="student_Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="studentNational_ID" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="parent_ID" Type="Int32" Nullable="false" />
+    <Property Name="grade_ID" Type="Int32" Nullable="false" />
+    <Property Name="class_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Parent" Relationship="Self.FK__Student__parent___440B1D61" FromRole="Student" ToRole="Parent" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Student__user_id__4316F928" FromRole="Student" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="teacher_id" />
+    </Key>
+    <Property Name="teacher_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="teacher_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="teacher_Speciality" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="teacher_Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="teacher_Age" Type="Int32" Nullable="false" />
+    <Property Name="natinal_ID" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Teacher__user_id__2C3393D0" FromRole="Teacher" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Administrators" Relationship="Self.FK__Administr__user___29572725" FromRole="Users" ToRole="Administrator" />
+    <NavigationProperty Name="Parents" Relationship="Self.FK__Parent__user_id__267ABA7A" FromRole="Users" ToRole="Parent" />
+    <NavigationProperty Name="Students" Relationship="Self.FK__Student__user_id__4316F928" FromRole="Users" ToRole="Student" />
+    <NavigationProperty Name="Teachers" Relationship="Self.FK__Teacher__user_id__2C3393D0" FromRole="Users" ToRole="Teacher" />
+  </EntityType>
+  <Association Name="FK__Administr__user___29572725">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Administrator">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Parent__user_id__267ABA7A">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Parent">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student__parent___440B1D61">
+    <End Role="Parent" Type="Self.Parent" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="parent_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="parent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student__user_id__4316F928">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Teacher__user_id__2C3393D0">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UserEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrators" EntityType="Self.Administrator" />
+    <EntitySet Name="Parents" EntityType="Self.Parent" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Administr__user___29572725" Association="Self.FK__Administr__user___29572725">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Administrator" EntitySet="Administrators" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Parent__user_id__267ABA7A" Association="Self.FK__Parent__user_id__267ABA7A">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Parent" EntitySet="Parents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student__parent___440B1D61" Association="Self.FK__Student__parent___440B1D61">
+      <End Role="Parent" EntitySet="Parents" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student__user_id__4316F928" Association="Self.FK__Student__user_id__4316F928">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Teacher__user_id__2C3393D0" Association="Self.FK__Teacher__user_id__2C3393D0">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

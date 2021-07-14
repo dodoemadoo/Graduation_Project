@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UserModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="administrator_id" />
+    </Key>
+    <Property Name="administrator_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adminstrator_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="adminstrator_Age" Type="int" Nullable="false" />
+    <Property Name="adminstrator_Gender" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="adminstrator_job" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="parent_id" />
+    </Key>
+    <Property Name="parent_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="father_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="f_National_ID" Type="int" Nullable="false" />
+    <Property Name="mother_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="m_National_ID" Type="int" Nullable="false" />
+    <Property Name="mother_job" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="father_job" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Phone_Number" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="student_ID" />
+    </Key>
+    <Property Name="student_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="student_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="student_Address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="student_Age" Type="int" Nullable="false" />
+    <Property Name="student_Gender" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="studentNational_ID" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="parent_ID" Type="int" Nullable="false" />
+    <Property Name="grade_ID" Type="int" Nullable="false" />
+    <Property Name="class_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="teacher_id" />
+    </Key>
+    <Property Name="teacher_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="teacher_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="teacher_Speciality" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="teacher_Gender" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="teacher_Age" Type="int" Nullable="false" />
+    <Property Name="natinal_ID" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="type" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Administr__user___29572725">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Administrator">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Parent__user_id__267ABA7A">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Parent">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student__parent___440B1D61">
+    <End Role="Parent" Type="Self.Parent" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="parent_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="parent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student__user_id__4316F928">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Teacher__user_id__2C3393D0">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UserModelStoreContainer">
+    <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Administr__user___29572725" Association="Self.FK__Administr__user___29572725">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Administrator" EntitySet="Administrator" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Parent__user_id__267ABA7A" Association="Self.FK__Parent__user_id__267ABA7A">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Parent" EntitySet="Parent" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student__parent___440B1D61" Association="Self.FK__Student__parent___440B1D61">
+      <End Role="Parent" EntitySet="Parent" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student__user_id__4316F928" Association="Self.FK__Student__user_id__4316F928">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Teacher__user_id__2C3393D0" Association="Self.FK__Teacher__user_id__2C3393D0">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

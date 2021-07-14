@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserModelStoreContainer" CdmEntityContainer="UserEntities">
+    <EntitySetMapping Name="Administrators">
+      <EntityTypeMapping TypeName="UserModel.Administrator">
+        <MappingFragment StoreEntitySet="Administrator">
+          <ScalarProperty Name="administrator_id" ColumnName="administrator_id" />
+          <ScalarProperty Name="adminstrator_Name" ColumnName="adminstrator_Name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="adminstrator_Age" ColumnName="adminstrator_Age" />
+          <ScalarProperty Name="adminstrator_Gender" ColumnName="adminstrator_Gender" />
+          <ScalarProperty Name="adminstrator_job" ColumnName="adminstrator_job" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parents">
+      <EntityTypeMapping TypeName="UserModel.Parent">
+        <MappingFragment StoreEntitySet="Parent">
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="father_Name" ColumnName="father_Name" />
+          <ScalarProperty Name="f_National_ID" ColumnName="f_National_ID" />
+          <ScalarProperty Name="mother_name" ColumnName="mother_name" />
+          <ScalarProperty Name="m_National_ID" ColumnName="m_National_ID" />
+          <ScalarProperty Name="mother_job" ColumnName="mother_job" />
+          <ScalarProperty Name="father_job" ColumnName="father_job" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="UserModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="student_ID" ColumnName="student_ID" />
+          <ScalarProperty Name="student_name" ColumnName="student_name" />
+          <ScalarProperty Name="student_Address" ColumnName="student_Address" />
+          <ScalarProperty Name="student_Age" ColumnName="student_Age" />
+          <ScalarProperty Name="student_Gender" ColumnName="student_Gender" />
+          <ScalarProperty Name="studentNational_ID" ColumnName="studentNational_ID" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="parent_ID" ColumnName="parent_ID" />
+          <ScalarProperty Name="grade_ID" ColumnName="grade_ID" />
+          <ScalarProperty Name="class_ID" ColumnName="class_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="UserModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
+          <ScalarProperty Name="teacher_Name" ColumnName="teacher_Name" />
+          <ScalarProperty Name="teacher_Speciality" ColumnName="teacher_Speciality" />
+          <ScalarProperty Name="teacher_Gender" ColumnName="teacher_Gender" />
+          <ScalarProperty Name="teacher_Age" ColumnName="teacher_Age" />
+          <ScalarProperty Name="natinal_ID" ColumnName="natinal_ID" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="UserModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
