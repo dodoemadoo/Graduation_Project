@@ -19,7 +19,7 @@ namespace WebApplication4
         {
             using (UserAuthentication OBJ = new UserAuthentication())
             {
-                var user = OBJ.ValidateUser(context.UserName, context.Password);
+                var user = OBJ.ValidateUser(int.Parse(context.UserName), context.Password);
                 if (user == null)
                 {
                     context.SetError("invalid_grant", "Username or password is incorrect");
@@ -27,7 +27,7 @@ namespace WebApplication4
                 }
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 identity.AddClaim(new Claim(ClaimTypes.Role, user.type));
-                identity.AddClaim(new Claim(ClaimTypes.Name, user.userName));
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.user_id.ToString()));
                 //identity.AddClaim(new Claim("Email", user.UserEmailID));  
 
                 context.Validated(identity);

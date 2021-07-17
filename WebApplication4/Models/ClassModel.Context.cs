@@ -25,6 +25,6 @@ namespace WebApplication4.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Class> Class { get; set; }
+        public virtual DbSet<Class> Classes { get; set; }
     }
 }

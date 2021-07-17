@@ -11,10 +11,11 @@ namespace WebApplication4
         //SECURITY_DBEntities it is your context class
         UserEntities context = new UserEntities();
         //This method is used to check and validate the user credentials
-        public User ValidateUser(string username, string password)
+        public User ValidateUser(int id, string password)
         {
             return context.Users.FirstOrDefault(user =>
-            user.userName.Equals(username, StringComparison.OrdinalIgnoreCase)
+            user.user_id == id
+            //user.userName.Equals(username, StringComparison.OrdinalIgnoreCase)
             && user.password == password);
         }
         public void Dispose()
