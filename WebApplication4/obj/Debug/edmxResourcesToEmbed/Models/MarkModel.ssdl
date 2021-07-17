@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="mark">
+    <Key>
+      <PropertyRef Name="mark_ID" />
+    </Key>
+    <Property Name="mark_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="year_wok" Type="float" />
+    <Property Name="final_exam_grade" Type="float" />
+    <Property Name="student_ID" Type="int" />
+    <Property Name="subject_ID" Type="int" />
+    <Property Name="year" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="MarkModelStoreContainer">
+    <EntitySet Name="mark" EntityType="Self.mark" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

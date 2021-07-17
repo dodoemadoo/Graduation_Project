@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AttendanceModelStoreContainer" CdmEntityContainer="AttendeceEntities">
+    <EntitySetMapping Name="Attendance">
+      <EntityTypeMapping TypeName="AttendanceModel.Attendance">
+        <MappingFragment StoreEntitySet="Attendance">
+          <ScalarProperty Name="attendance_id" ColumnName="attendance_id" />
+          <ScalarProperty Name="SS_ID" ColumnName="SS_ID" />
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
+          <ScalarProperty Name="adate" ColumnName="adate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

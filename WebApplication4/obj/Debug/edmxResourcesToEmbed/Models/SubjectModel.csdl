@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SubjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="subject_id" />
+    </Key>
+    <Property Name="subject_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subject_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="subject_code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="classes_per_week" Type="Int32" Nullable="false" />
+    <Property Name="total_grade" Type="Double" Nullable="false" />
+    <Property Name="year_wok" Type="Double" Nullable="false" />
+    <Property Name="final_exam_grade" Type="Double" Nullable="false" />
+    <Property Name="grade_ID" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="SubjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Subject" EntityType="Self.Subject" />
+  </EntityContainer>
+</Schema>

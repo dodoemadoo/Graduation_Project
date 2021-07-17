@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClassModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="class_ID" />
+    </Key>
+    <Property Name="class_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="class_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="class_capacity" Type="Int32" Nullable="false" />
+    <Property Name="class_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="building_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ClassSMSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Class" EntityType="Self.Class" />
+  </EntityContainer>
+</Schema>

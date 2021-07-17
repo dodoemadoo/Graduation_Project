@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DriverModelStoreContainer" CdmEntityContainer="DriverEntities">
+    <EntitySetMapping Name="Driver">
+      <EntityTypeMapping TypeName="DriverModel.Driver">
+        <MappingFragment StoreEntitySet="Driver">
+          <ScalarProperty Name="driver_ID" ColumnName="driver_ID" />
+          <ScalarProperty Name="driver_Name" ColumnName="driver_Name" />
+          <ScalarProperty Name="driver_National_ID" ColumnName="driver_National_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

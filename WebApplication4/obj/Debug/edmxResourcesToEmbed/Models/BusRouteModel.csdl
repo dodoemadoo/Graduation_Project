@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BusRouteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bus_Route">
+    <Key>
+      <PropertyRef Name="bus_Route_ID" />
+    </Key>
+    <Property Name="bus_Route_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bus_ID" Type="Int32" />
+    <Property Name="route_ID" Type="Int32" />
+    <Property Name="driver_ID" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="BusRouteEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bus_Route" EntityType="Self.Bus_Route" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BusRouteModelStoreContainer" CdmEntityContainer="BusRouteEntities">
+    <EntitySetMapping Name="Bus_Route">
+      <EntityTypeMapping TypeName="BusRouteModel.Bus_Route">
+        <MappingFragment StoreEntitySet="Bus_Route">
+          <ScalarProperty Name="bus_Route_ID" ColumnName="bus_Route_ID" />
+          <ScalarProperty Name="bus_ID" ColumnName="bus_ID" />
+          <ScalarProperty Name="route_ID" ColumnName="route_ID" />
+          <ScalarProperty Name="driver_ID" ColumnName="driver_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

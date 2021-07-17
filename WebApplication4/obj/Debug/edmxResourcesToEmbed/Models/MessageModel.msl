@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MessageModelStoreContainer" CdmEntityContainer="MessageEntities">
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="MessageModel.Messages">
+        <MappingFragment StoreEntitySet="Messages">
+          <ScalarProperty Name="message_id" ColumnName="message_id" />
+          <ScalarProperty Name="sender_ID" ColumnName="sender_ID" />
+          <ScalarProperty Name="receiver_ID" ColumnName="receiver_ID" />
+          <ScalarProperty Name="message_text" ColumnName="message_text" />
+          <ScalarProperty Name="about_text" ColumnName="about_text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

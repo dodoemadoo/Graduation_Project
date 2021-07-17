@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeacherModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="teacher_id" />
+    </Key>
+    <Property Name="teacher_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="teacher_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="teacher_Speciality" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="teacher_Gender" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="teacher_Age" Type="int" Nullable="false" />
+    <Property Name="natinal_ID" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="TeacherModelStoreContainer">
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bus">
+    <Key>
+      <PropertyRef Name="bus_ID" />
+    </Key>
+    <Property Name="bus_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bus_capacity" Type="Int32" Nullable="false" />
+    <Property Name="bus_number_plate" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="BusEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bus" EntityType="Self.Bus" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BusRouteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bus_Route">
+    <Key>
+      <PropertyRef Name="bus_Route_ID" />
+    </Key>
+    <Property Name="bus_Route_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bus_ID" Type="int" />
+    <Property Name="route_ID" Type="int" />
+    <Property Name="driver_ID" Type="int" />
+  </EntityType>
+  <EntityContainer Name="BusRouteModelStoreContainer">
+    <EntitySet Name="Bus_Route" EntityType="Self.Bus_Route" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

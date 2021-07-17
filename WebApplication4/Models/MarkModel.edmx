@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MarkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="mark">
+          <Key>
+            <PropertyRef Name="mark_ID" />
+          </Key>
+          <Property Name="mark_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="year_wok" Type="float" />
+          <Property Name="final_exam_grade" Type="float" />
+          <Property Name="student_ID" Type="int" />
+          <Property Name="subject_ID" Type="int" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MarkModelStoreContainer">
+          <EntitySet Name="mark" EntityType="Self.mark" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MarkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="mark">
+          <Key>
+            <PropertyRef Name="mark_ID" />
+          </Key>
+          <Property Name="mark_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="year_wok" Type="Double" />
+          <Property Name="final_exam_grade" Type="Double" />
+          <Property Name="student_ID" Type="Int32" />
+          <Property Name="subject_ID" Type="Int32" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MarkEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="mark" EntityType="Self.mark" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MarkModelStoreContainer" CdmEntityContainer="MarkEntities">
+          <EntitySetMapping Name="mark">
+            <EntityTypeMapping TypeName="MarkModel.mark">
+              <MappingFragment StoreEntitySet="mark">
+                <ScalarProperty Name="mark_ID" ColumnName="mark_ID" />
+                <ScalarProperty Name="year_wok" ColumnName="year_wok" />
+                <ScalarProperty Name="final_exam_grade" ColumnName="final_exam_grade" />
+                <ScalarProperty Name="student_ID" ColumnName="student_ID" />
+                <ScalarProperty Name="subject_ID" ColumnName="subject_ID" />
+                <ScalarProperty Name="year" ColumnName="year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

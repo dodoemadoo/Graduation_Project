@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MessageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="message_id" />
+          </Key>
+          <Property Name="message_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sender_ID" Type="int" Nullable="false" />
+          <Property Name="receiver_ID" Type="int" Nullable="false" />
+          <Property Name="message_text" Type="varchar" MaxLength="255" />
+          <Property Name="about_text" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="MessageModelStoreContainer">
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MessageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="message_id" />
+          </Key>
+          <Property Name="message_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sender_ID" Type="Int32" Nullable="false" />
+          <Property Name="receiver_ID" Type="Int32" Nullable="false" />
+          <Property Name="message_text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="about_text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="MessageEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Messages" EntityType="Self.Messages" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MessageModelStoreContainer" CdmEntityContainer="MessageEntities">
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="MessageModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="message_id" ColumnName="message_id" />
+                <ScalarProperty Name="sender_ID" ColumnName="sender_ID" />
+                <ScalarProperty Name="receiver_ID" ColumnName="receiver_ID" />
+                <ScalarProperty Name="message_text" ColumnName="message_text" />
+                <ScalarProperty Name="about_text" ColumnName="about_text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

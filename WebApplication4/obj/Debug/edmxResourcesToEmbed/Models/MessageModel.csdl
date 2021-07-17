@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MessageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Messages">
+    <Key>
+      <PropertyRef Name="message_id" />
+    </Key>
+    <Property Name="message_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sender_ID" Type="Int32" Nullable="false" />
+    <Property Name="receiver_ID" Type="Int32" Nullable="false" />
+    <Property Name="message_text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="about_text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="MessageEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Messages" EntityType="Self.Messages" />
+  </EntityContainer>
+</Schema>
