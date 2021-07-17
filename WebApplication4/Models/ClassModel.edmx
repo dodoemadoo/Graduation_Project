@@ -14,6 +14,7 @@
           <Property Name="class_capacity" Type="int" Nullable="false" />
           <Property Name="class_Type" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="building_ID" Type="int" Nullable="false" />
+          <Property Name="grade_id" Type="int" />
         </EntityType>
         <EntityContainer Name="ClassModelStoreContainer">
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
@@ -32,9 +33,10 @@
           <Property Name="class_capacity" Type="Int32" Nullable="false" />
           <Property Name="class_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="building_ID" Type="Int32" Nullable="false" />
+          <Property Name="grade_id" Type="Int32" />
         </EntityType>
         <EntityContainer Name="ClassSMSEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Class" EntityType="Self.Class" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -42,7 +44,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ClassModelStoreContainer" CdmEntityContainer="ClassSMSEntities">
-          <EntitySetMapping Name="Class">
+          <EntitySetMapping Name="Classes">
             <EntityTypeMapping TypeName="ClassModel.Class">
               <MappingFragment StoreEntitySet="Class">
                 <ScalarProperty Name="class_ID" ColumnName="class_ID" />
@@ -50,6 +52,7 @@
                 <ScalarProperty Name="class_capacity" ColumnName="class_capacity" />
                 <ScalarProperty Name="class_Type" ColumnName="class_Type" />
                 <ScalarProperty Name="building_ID" ColumnName="building_ID" />
+                <ScalarProperty Name="grade_id" ColumnName="grade_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -67,7 +70,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
