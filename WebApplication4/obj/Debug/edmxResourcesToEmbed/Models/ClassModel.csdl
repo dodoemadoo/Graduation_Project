@@ -9,6 +9,7 @@
     <Property Name="class_capacity" Type="Int32" Nullable="false" />
     <Property Name="class_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="building_ID" Type="Int32" Nullable="false" />
+    <Property Name="grade_id" Type="Int32" />
   </EntityType>
   <EntityContainer Name="ClassSMSEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Class" EntityType="Self.Class" />

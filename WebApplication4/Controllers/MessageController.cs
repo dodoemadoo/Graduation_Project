@@ -19,7 +19,7 @@ namespace WebApplication4.Controllers
 
                 if (list != null)
                 {
-                    return list.Reverse();
+                    return list.OrderBy(x => x.time).Reverse();
                 }
                 else
                 {
@@ -36,7 +36,7 @@ namespace WebApplication4.Controllers
 
                 if (list != null)
                 {
-                    return list.Reverse();
+                    return list.OrderBy(x=>x.time).Reverse();
                 }
                 else
                 {
@@ -56,6 +56,7 @@ namespace WebApplication4.Controllers
                     _message.receiver_ID = reciever_id;
                     _message.message_text = text;
                     _message.about_text = about;
+                    _message.time = DateTime.UtcNow;
                     entities.Messages.Add(_message);
                     entities.SaveChanges();
 

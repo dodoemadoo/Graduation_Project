@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MessageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MessageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Messages">
           <Key>
             <PropertyRef Name="message_id" />
@@ -14,12 +14,12 @@
           <Property Name="receiver_ID" Type="int" Nullable="false" />
           <Property Name="message_text" Type="varchar" MaxLength="255" />
           <Property Name="about_text" Type="varchar" MaxLength="255" />
+          <Property Name="time" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="MessageModelStoreContainer">
           <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MessageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -32,6 +32,7 @@
           <Property Name="receiver_ID" Type="Int32" Nullable="false" />
           <Property Name="message_text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="about_text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityContainer Name="MessageEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Messages" EntityType="Self.Messages" />
@@ -45,6 +46,7 @@
           <EntitySetMapping Name="Messages">
             <EntityTypeMapping TypeName="MessageModel.Messages">
               <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="time" ColumnName="time" />
                 <ScalarProperty Name="message_id" ColumnName="message_id" />
                 <ScalarProperty Name="sender_ID" ColumnName="sender_ID" />
                 <ScalarProperty Name="receiver_ID" ColumnName="receiver_ID" />

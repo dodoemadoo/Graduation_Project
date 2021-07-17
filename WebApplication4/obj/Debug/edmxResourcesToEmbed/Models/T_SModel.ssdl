@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="T_SModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="T_S">
+    <Key>
+      <PropertyRef Name="T_S_ID" />
+    </Key>
+    <Property Name="T_S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject_ID" Type="int" />
+    <Property Name="teacher_ID" Type="int" />
+  </EntityType>
+  <EntityContainer Name="T_SModelStoreContainer">
+    <EntitySet Name="T_S" EntityType="Self.T_S" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

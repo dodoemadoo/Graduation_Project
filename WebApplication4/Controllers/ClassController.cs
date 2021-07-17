@@ -78,6 +78,7 @@ namespace WebApplication4.Controllers
                         entity.class_capacity = c.class_capacity;
                         entity.class_name = c.class_name;
                         entity.class_Type = c.class_Type;
+                        entity.grade_id = c.grade_id;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, entity);
                     }

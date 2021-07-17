@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ClassModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ClassModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Class">
           <Key>
             <PropertyRef Name="class_ID" />
@@ -14,12 +14,12 @@
           <Property Name="class_capacity" Type="int" Nullable="false" />
           <Property Name="class_Type" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="building_ID" Type="int" Nullable="false" />
+          <Property Name="grade_id" Type="int" />
         </EntityType>
         <EntityContainer Name="ClassModelStoreContainer">
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClassModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -32,6 +32,7 @@
           <Property Name="class_capacity" Type="Int32" Nullable="false" />
           <Property Name="class_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="building_ID" Type="Int32" Nullable="false" />
+          <Property Name="grade_id" Type="Int32" />
         </EntityType>
         <EntityContainer Name="ClassSMSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Class" EntityType="Self.Class" />
@@ -45,6 +46,7 @@
           <EntitySetMapping Name="Class">
             <EntityTypeMapping TypeName="ClassModel.Class">
               <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="grade_id" ColumnName="grade_id" />
                 <ScalarProperty Name="class_ID" ColumnName="class_ID" />
                 <ScalarProperty Name="class_name" ColumnName="class_name" />
                 <ScalarProperty Name="class_capacity" ColumnName="class_capacity" />

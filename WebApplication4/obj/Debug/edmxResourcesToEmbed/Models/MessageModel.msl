@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Messages">
       <EntityTypeMapping TypeName="MessageModel.Messages">
         <MappingFragment StoreEntitySet="Messages">
+          <ScalarProperty Name="time" ColumnName="time" />
           <ScalarProperty Name="message_id" ColumnName="message_id" />
           <ScalarProperty Name="sender_ID" ColumnName="sender_ID" />
           <ScalarProperty Name="receiver_ID" ColumnName="receiver_ID" />

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ScheduleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="schedule">
+    <Key>
+      <PropertyRef Name="SS_ID" />
+    </Key>
+    <Property Name="SS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="week_Day" Type="Int32" />
+    <Property Name="slot_ID" Type="Int32" />
+    <Property Name="class_ID" Type="Int32" />
+    <Property Name="teacher_subject_ID" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="scheduleEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="schedule" EntityType="Self.schedule" />
+  </EntityContainer>
+</Schema>

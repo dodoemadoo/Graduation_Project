@@ -9,6 +9,7 @@
     <Property Name="receiver_ID" Type="int" Nullable="false" />
     <Property Name="message_text" Type="varchar" MaxLength="255" />
     <Property Name="about_text" Type="varchar" MaxLength="255" />
+    <Property Name="time" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityContainer Name="MessageModelStoreContainer">
     <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />

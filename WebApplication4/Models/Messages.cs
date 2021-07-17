@@ -19,5 +19,6 @@ namespace WebApplication4.Models
         public int receiver_ID { get; set; }
         public string message_text { get; set; }
         public string about_text { get; set; }
+        public System.DateTime time { get; set; }
     }
 }

@@ -9,6 +9,7 @@
     <Property Name="class_capacity" Type="int" Nullable="false" />
     <Property Name="class_Type" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="building_ID" Type="int" Nullable="false" />
+    <Property Name="grade_id" Type="int" />
   </EntityType>
   <EntityContainer Name="ClassModelStoreContainer">
     <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />

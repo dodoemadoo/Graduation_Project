@@ -19,5 +19,6 @@ namespace WebApplication4.Models
         public int class_capacity { get; set; }
         public string class_Type { get; set; }
         public int building_ID { get; set; }
+        public Nullable<int> grade_id { get; set; }
     }
 }

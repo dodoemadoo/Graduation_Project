@@ -185,6 +185,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="AuthorizationServerProvider.cs" />
     <Compile Include="Controllers\GradeController.cs" />
+    <Compile Include="Controllers\ClassAllocationController.cs" />
+    <Compile Include="Controllers\TeacherToClassController.cs" />
+    <Compile Include="Controllers\TeacherToSubjectController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\BuildingController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
@@ -409,6 +412,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RouteModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\schedule.cs">
+      <DependentUpon>ScheduleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScheduleModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScheduleModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScheduleModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScheduleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScheduleModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Student.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
@@ -447,6 +468,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TeacherModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_S.cs">
+      <DependentUpon>T_SModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_SModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T_SModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_SModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T_SModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_SModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T_SModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
@@ -589,6 +628,16 @@
       <DependentUpon>RouteModel.edmx</DependentUpon>
       <LastGenOutput>RouteModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\ScheduleModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
+      <LastGenOutput>ScheduleModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ScheduleModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
+      <LastGenOutput>ScheduleModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\SubjectModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SubjectModel.edmx</DependentUpon>
@@ -608,6 +657,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TeacherModel.edmx</DependentUpon>
       <LastGenOutput>TeacherModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\T_SModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>T_SModel.edmx</DependentUpon>
+      <LastGenOutput>T_SModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\T_SModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>T_SModel.edmx</DependentUpon>
+      <LastGenOutput>T_SModel.cs</LastGenOutput>
     </Content>
     <Content Include="Models\UserModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -660,13 +719,6 @@
     </EntityDeploy>
     <Content Include="Models\BusModel.edmx.diagram">
       <DependentUpon>BusModel.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\BusRouteModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BusRouteModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BusRouteModel.edmx.diagram">
-      <DependentUpon>BusRouteModel.edmx</DependentUpon>
     </Content>
     <EntityDeploy Include="Models\ClassModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -737,6 +789,27 @@
     </EntityDeploy>
     <Content Include="Models\BuildingModel.edmx.diagram">
       <DependentUpon>BuildingModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\BusRouteModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BusRouteModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BusRouteModel.edmx.diagram">
+      <DependentUpon>BusRouteModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\T_SModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>T_SModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\T_SModel.edmx.diagram">
+      <DependentUpon>T_SModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ScheduleModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ScheduleModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ScheduleModel.edmx.diagram">
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

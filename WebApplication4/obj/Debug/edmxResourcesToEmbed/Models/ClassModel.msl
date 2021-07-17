@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Class">
       <EntityTypeMapping TypeName="ClassModel.Class">
         <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
           <ScalarProperty Name="class_ID" ColumnName="class_ID" />
           <ScalarProperty Name="class_name" ColumnName="class_name" />
           <ScalarProperty Name="class_capacity" ColumnName="class_capacity" />

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ScheduleModelStoreContainer" CdmEntityContainer="scheduleEntities">
+    <EntitySetMapping Name="schedule">
+      <EntityTypeMapping TypeName="ScheduleModel.schedule">
+        <MappingFragment StoreEntitySet="schedule">
+          <ScalarProperty Name="SS_ID" ColumnName="SS_ID" />
+          <ScalarProperty Name="week_Day" ColumnName="week_Day" />
+          <ScalarProperty Name="slot_ID" ColumnName="slot_ID" />
+          <ScalarProperty Name="class_ID" ColumnName="class_ID" />
+          <ScalarProperty Name="teacher_subject_ID" ColumnName="teacher_subject_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
