@@ -184,7 +184,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="AuthorizationServerProvider.cs" />
-    <Compile Include="Controllers\ClassListController.cs" />
     <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\ClassAllocationController.cs" />
     <Compile Include="Controllers\TeacherToClassController.cs" />
@@ -721,13 +720,6 @@
     <Content Include="Models\BusModel.edmx.diagram">
       <DependentUpon>BusModel.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\ClassModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ClassModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ClassModel.edmx.diagram">
-      <DependentUpon>ClassModel.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\ComplainModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ComplainModel.Designer.cs</LastGenOutput>
@@ -811,6 +803,13 @@
     </EntityDeploy>
     <Content Include="Models\ScheduleModel.edmx.diagram">
       <DependentUpon>ScheduleModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ClassModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClassModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ClassModel.edmx.diagram">
+      <DependentUpon>ClassModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

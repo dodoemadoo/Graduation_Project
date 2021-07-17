@@ -18,7 +18,7 @@ namespace WebApplication4.Controllers
                 using (scheduleEntities entities = new scheduleEntities())
                 {
                     int classID;
-                    using (ClassSMSEntities classEntities = new ClassSMSEntities())
+                    using (ClassEntities classEntities = new ClassEntities())
                     {
                         Class _class = classEntities.Class.FirstOrDefault(c => c.class_name.Equals(className));
                         classID = _class.class_ID;

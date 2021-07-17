@@ -13,7 +13,7 @@ namespace WebApplication4.Controllers
         // GET: api/Class
         public HttpResponseMessage Get()
         {
-            using (ClassSMSEntities entities = new ClassSMSEntities())
+            using (ClassEntities entities = new ClassEntities())
             {
                 return Request.CreateResponse(HttpStatusCode.OK, entities.Class.ToList());
 
@@ -23,7 +23,7 @@ namespace WebApplication4.Controllers
         // GET: api/Class/5
         public HttpResponseMessage Get(int id)
         {
-            using (ClassSMSEntities entities = new ClassSMSEntities())
+            using (ClassEntities entities = new ClassEntities())
             {
                 var entity = entities.Class.FirstOrDefault(c => c.class_ID == id);
 
@@ -43,7 +43,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                using (ClassSMSEntities entities = new ClassSMSEntities())
+                using (ClassEntities entities = new ClassEntities())
                 {
                     entities.Class.Add(c);
                     entities.SaveChanges();
@@ -65,7 +65,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                using (ClassSMSEntities entities = new ClassSMSEntities())
+                using (ClassEntities entities = new ClassEntities())
                 {
                     var entity = entities.Class.FirstOrDefault(a => a.class_ID == id);
                     if (entity == null)
@@ -95,7 +95,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                using (ClassSMSEntities entities = new ClassSMSEntities())
+                using (ClassEntities entities = new ClassEntities())
                 {
                     var entity = entities.Class.FirstOrDefault(c => c.class_ID == id);
                     if (entity == null)

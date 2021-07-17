@@ -15,7 +15,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                using (ClassSMSEntities entities = new ClassSMSEntities())
+                using (ClassEntities entities = new ClassEntities())
                 {
                     entities.Class.Add(c);
                     entities.SaveChanges();

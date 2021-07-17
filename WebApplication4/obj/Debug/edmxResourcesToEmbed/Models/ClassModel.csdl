@@ -11,7 +11,7 @@
     <Property Name="building_ID" Type="Int32" Nullable="false" />
     <Property Name="grade_id" Type="Int32" />
   </EntityType>
-  <EntityContainer Name="ClassSMSEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="ClassEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Class" EntityType="Self.Class" />
   </EntityContainer>
 </Schema>

@@ -13,10 +13,10 @@ namespace WebApplication4.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ClassSMSEntities : DbContext
+    public partial class ClassEntities : DbContext
     {
-        public ClassSMSEntities()
-            : base("name=ClassSMSEntities")
+        public ClassEntities()
+            : base("name=ClassEntities")
         {
         }
     
@@ -25,6 +25,6 @@ namespace WebApplication4.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Class> Classes { get; set; }
+        public virtual DbSet<Class> Class { get; set; }
     }
 }

@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ClassModelStoreContainer" CdmEntityContainer="ClassSMSEntities">
+  <EntityContainerMapping StorageEntityContainer="ClassModelStoreContainer" CdmEntityContainer="ClassEntities">
     <EntitySetMapping Name="Class">
       <EntityTypeMapping TypeName="ClassModel.Class">
         <MappingFragment StoreEntitySet="Class">
-          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
           <ScalarProperty Name="class_ID" ColumnName="class_ID" />
           <ScalarProperty Name="class_name" ColumnName="class_name" />
           <ScalarProperty Name="class_capacity" ColumnName="class_capacity" />
           <ScalarProperty Name="class_Type" ColumnName="class_Type" />
           <ScalarProperty Name="building_ID" ColumnName="building_ID" />
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
