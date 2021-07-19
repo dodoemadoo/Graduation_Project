@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="222bd5128c6f45d6b29a2aaf8575afc8" Name="Diagram1">
+      <Diagram DiagramId="11260c36dbee42bfb368cc5ec84d4ab8" Name="Diagram1">
         <EntityTypeShape EntityType="UserModel.Administrator" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="UserModel.Parent" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UserModel.Student" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="UserModel.Teacher" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="UserModel.User" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserModel.User" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <AssociationConnector Association="UserModel.FK__Administr__user___29572725" ManuallyRouted="false" />
         <AssociationConnector Association="UserModel.FK__Parent__user_id__267ABA7A" ManuallyRouted="false" />
-        <AssociationConnector Association="UserModel.FK__Student__parent___440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="UserModel.FK__Student__user_id__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="UserModel.FK__Student__parent___44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="UserModel.FK__Student__user_id__440B1D61" ManuallyRouted="false" />
         <AssociationConnector Association="UserModel.FK__Teacher__user_id__2C3393D0" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

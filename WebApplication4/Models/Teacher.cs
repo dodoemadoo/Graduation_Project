@@ -21,5 +21,7 @@ namespace WebApplication4.Models
         public int teacher_Age { get; set; }
         public int natinal_ID { get; set; }
         public int user_id { get; set; }
+    
+        public virtual User User { get; set; }
     }
 }

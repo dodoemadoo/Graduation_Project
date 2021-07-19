@@ -22,7 +22,6 @@ namespace WebApplication4.Controllers
                         .Select(c => c.Value);
 
             myclass.type = roles.ToString();
-            myclass.userName = identity.Name;
 
             return Request.CreateResponse(HttpStatusCode.Created, myclass);
         }

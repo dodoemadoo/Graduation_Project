@@ -184,6 +184,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="AuthorizationServerProvider.cs" />
+    <Compile Include="Controllers\ClassListController.cs" />
     <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\ClassAllocationController.cs" />
     <Compile Include="Controllers\TeacherToClassController.cs" />
@@ -431,7 +432,22 @@
       <DependentUpon>ScheduleModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
+      <DependentUpon>StudentModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Subject.cs">
       <DependentUpon>SubjectModel.tt</DependentUpon>
@@ -452,7 +468,7 @@
       <DependentUpon>SubjectModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Teacher.cs">
-      <DependentUpon>TeacherModel.tt</DependentUpon>
+      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TeacherModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -638,6 +654,16 @@
       <DependentUpon>ScheduleModel.edmx</DependentUpon>
       <LastGenOutput>ScheduleModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\StudentModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StudentModel.edmx</DependentUpon>
+      <LastGenOutput>StudentModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\StudentModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StudentModel.edmx</DependentUpon>
+      <LastGenOutput>StudentModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\SubjectModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SubjectModel.edmx</DependentUpon>
@@ -699,13 +725,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\UserModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UserModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\UserModel.edmx.diagram">
-      <DependentUpon>UserModel.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\AttendanceModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AttendanceModel.Designer.cs</LastGenOutput>
@@ -810,6 +829,20 @@
     </EntityDeploy>
     <Content Include="Models\ClassModel.edmx.diagram">
       <DependentUpon>ClassModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\UserModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UserModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\UserModel.edmx.diagram">
+      <DependentUpon>UserModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\StudentModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StudentModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\StudentModel.edmx.diagram">
+      <DependentUpon>StudentModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

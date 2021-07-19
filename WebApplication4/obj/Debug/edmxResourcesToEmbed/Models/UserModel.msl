@@ -64,7 +64,6 @@
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

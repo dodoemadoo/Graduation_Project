@@ -44,7 +44,7 @@
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="parent_ID" Type="int" Nullable="false" />
           <Property Name="grade_ID" Type="int" Nullable="false" />
-          <Property Name="class_ID" Type="int" Nullable="false" />
+          <Property Name="class_ID" Type="int" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -65,7 +65,6 @@
           <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="255" />
           <Property Name="type" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="userName" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <Association Name="FK__Administr__user___29572725">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -91,7 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__parent___440B1D61">
+        <Association Name="FK__Student__parent___44FF419A">
           <End Role="Parent" Type="Self.Parent" Multiplicity="1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -103,7 +102,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__user_id__4316F928">
+        <Association Name="FK__Student__user_id__440B1D61">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,11 +140,11 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Parent" EntitySet="Parent" />
           </AssociationSet>
-          <AssociationSet Name="FK__Student__parent___440B1D61" Association="Self.FK__Student__parent___440B1D61">
+          <AssociationSet Name="FK__Student__parent___44FF419A" Association="Self.FK__Student__parent___44FF419A">
             <End Role="Parent" EntitySet="Parent" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
-          <AssociationSet Name="FK__Student__user_id__4316F928" Association="Self.FK__Student__user_id__4316F928">
+          <AssociationSet Name="FK__Student__user_id__440B1D61" Association="Self.FK__Student__user_id__440B1D61">
             <End Role="Users" EntitySet="Users" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
@@ -186,7 +185,7 @@
           <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phone_Number" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK__Parent__user_id__267ABA7A" FromRole="Parent" ToRole="Users" />
-          <NavigationProperty Name="Students" Relationship="Self.FK__Student__parent___440B1D61" FromRole="Parent" ToRole="Student" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__parent___44FF419A" FromRole="Parent" ToRole="Student" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -201,9 +200,9 @@
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="parent_ID" Type="Int32" Nullable="false" />
           <Property Name="grade_ID" Type="Int32" Nullable="false" />
-          <Property Name="class_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Parent" Relationship="Self.FK__Student__parent___440B1D61" FromRole="Student" ToRole="Parent" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Student__user_id__4316F928" FromRole="Student" ToRole="Users" />
+          <Property Name="class_ID" Type="Int32" />
+          <NavigationProperty Name="Parent" Relationship="Self.FK__Student__parent___44FF419A" FromRole="Student" ToRole="Parent" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Student__user_id__440B1D61" FromRole="Student" ToRole="Users" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -225,10 +224,9 @@
           <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="userName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Administrators" Relationship="Self.FK__Administr__user___29572725" FromRole="Users" ToRole="Administrator" />
           <NavigationProperty Name="Parents" Relationship="Self.FK__Parent__user_id__267ABA7A" FromRole="Users" ToRole="Parent" />
-          <NavigationProperty Name="Students" Relationship="Self.FK__Student__user_id__4316F928" FromRole="Users" ToRole="Student" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__user_id__440B1D61" FromRole="Users" ToRole="Student" />
           <NavigationProperty Name="Teachers" Relationship="Self.FK__Teacher__user_id__2C3393D0" FromRole="Users" ToRole="Teacher" />
         </EntityType>
         <Association Name="FK__Administr__user___29572725">
@@ -255,7 +253,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__parent___440B1D61">
+        <Association Name="FK__Student__parent___44FF419A">
           <End Role="Parent" Type="Self.Parent" Multiplicity="1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -267,7 +265,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__user_id__4316F928">
+        <Association Name="FK__Student__user_id__440B1D61">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -305,11 +303,11 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Parent" EntitySet="Parents" />
           </AssociationSet>
-          <AssociationSet Name="FK__Student__parent___440B1D61" Association="Self.FK__Student__parent___440B1D61">
+          <AssociationSet Name="FK__Student__parent___44FF419A" Association="Self.FK__Student__parent___44FF419A">
             <End Role="Parent" EntitySet="Parents" />
             <End Role="Student" EntitySet="Students" />
           </AssociationSet>
-          <AssociationSet Name="FK__Student__user_id__4316F928" Association="Self.FK__Student__user_id__4316F928">
+          <AssociationSet Name="FK__Student__user_id__440B1D61" Association="Self.FK__Student__user_id__440B1D61">
             <End Role="Users" EntitySet="Users" />
             <End Role="Student" EntitySet="Students" />
           </AssociationSet>
@@ -387,7 +385,6 @@
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="userName" ColumnName="userName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
