@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ScheduleModelStoreContainer" CdmEntityContainer="scheduleEntities">
-    <EntitySetMapping Name="schedule">
+  <EntityContainerMapping StorageEntityContainer="ScheduleModelStoreContainer" CdmEntityContainer="ScheduleEntities">
+    <EntitySetMapping Name="schedules">
       <EntityTypeMapping TypeName="ScheduleModel.schedule">
         <MappingFragment StoreEntitySet="schedule">
           <ScalarProperty Name="SS_ID" ColumnName="SS_ID" />

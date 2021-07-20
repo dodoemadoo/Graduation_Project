@@ -15,7 +15,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                using (scheduleEntities entities = new scheduleEntities())
+                using (ScheduleEntities entities = new ScheduleEntities())
                 {
                     int classID;
                     using (ClassEntities classEntities = new ClassEntities())
@@ -23,8 +23,8 @@ namespace WebApplication4.Controllers
                         Class _class = classEntities.Class.FirstOrDefault(c => c.class_name.Equals(className));
                         classID = _class.class_ID;
                     }
-                    schedule Sc = entities.schedule.FirstOrDefault(sc => sc.class_ID == classID);
-                    schedule Sc3 = entities.schedule.FirstOrDefault(sc => sc.teacher_subject_ID == TS_ID);
+                    schedule Sc = entities.schedules.FirstOrDefault(sc => sc.class_ID == classID);
+                    schedule Sc3 = entities.schedules.FirstOrDefault(sc => sc.teacher_subject_ID == TS_ID);
                     if (Sc != null && Sc.teacher_subject_ID == null)
                     {
                         Sc.teacher_subject_ID = TS_ID;
@@ -42,7 +42,7 @@ namespace WebApplication4.Controllers
                         schedule Sc2 = new schedule();
                         Sc2.class_ID = classID;
                         Sc2.teacher_subject_ID = TS_ID;
-                        entities.schedule.Add(Sc2);
+                        entities.schedules.Add(Sc2);
                         entities.SaveChanges();
 
                         var message = Request.CreateResponse(HttpStatusCode.Created, Sc2);

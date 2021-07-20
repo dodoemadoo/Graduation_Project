@@ -13,10 +13,10 @@ namespace WebApplication4.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class scheduleEntities : DbContext
+    public partial class ScheduleEntities : DbContext
     {
-        public scheduleEntities()
-            : base("name=scheduleEntities")
+        public ScheduleEntities()
+            : base("name=ScheduleEntities")
         {
         }
     
@@ -25,6 +25,6 @@ namespace WebApplication4.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<schedule> schedule { get; set; }
+        public virtual DbSet<schedule> schedules { get; set; }
     }
 }

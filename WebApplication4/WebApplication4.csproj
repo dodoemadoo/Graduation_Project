@@ -187,6 +187,7 @@
     <Compile Include="Controllers\ClassListController.cs" />
     <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\ClassAllocationController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\TeacherToClassController.cs" />
     <Compile Include="Controllers\TeacherToSubjectController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
@@ -816,13 +817,6 @@
     <Content Include="Models\T_SModel.edmx.diagram">
       <DependentUpon>T_SModel.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\ScheduleModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ScheduleModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ScheduleModel.edmx.diagram">
-      <DependentUpon>ScheduleModel.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\ClassModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ClassModel.Designer.cs</LastGenOutput>
@@ -843,6 +837,13 @@
     </EntityDeploy>
     <Content Include="Models\StudentModel.edmx.diagram">
       <DependentUpon>StudentModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ScheduleModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ScheduleModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ScheduleModel.edmx.diagram">
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -15,7 +15,7 @@ namespace WebApplication4.Models
     public partial class schedule
     {
         public int SS_ID { get; set; }
-        public Nullable<int> week_Day { get; set; }
+        public string week_Day { get; set; }
         public Nullable<int> slot_ID { get; set; }
         public Nullable<int> class_ID { get; set; }
         public Nullable<int> teacher_subject_ID { get; set; }

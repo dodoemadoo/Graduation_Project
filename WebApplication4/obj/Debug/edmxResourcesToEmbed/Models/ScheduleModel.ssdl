@@ -5,7 +5,7 @@
       <PropertyRef Name="SS_ID" />
     </Key>
     <Property Name="SS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="week_Day" Type="int" />
+    <Property Name="week_Day" Type="varchar" MaxLength="50" />
     <Property Name="slot_ID" Type="int" />
     <Property Name="class_ID" Type="int" />
     <Property Name="teacher_subject_ID" Type="int" />
