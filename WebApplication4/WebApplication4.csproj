@@ -810,13 +810,6 @@
     <Content Include="Models\BusRouteModel.edmx.diagram">
       <DependentUpon>BusRouteModel.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\T_SModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>T_SModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\T_SModel.edmx.diagram">
-      <DependentUpon>T_SModel.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\ClassModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ClassModel.Designer.cs</LastGenOutput>
@@ -844,6 +837,13 @@
     </EntityDeploy>
     <Content Include="Models\ScheduleModel.edmx.diagram">
       <DependentUpon>ScheduleModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\T_SModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>T_SModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\T_SModel.edmx.diagram">
+      <DependentUpon>T_SModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

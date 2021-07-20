@@ -15,12 +15,22 @@ namespace WebApplication4.Controllers
         {
             using (ScheduleEntities schedule = new ScheduleEntities())
             {
-                var firstCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && s.class_ID == slot.class_ID).ToList();
-                var secondCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && s.teacher_subject_ID == slot.teacher_subject_ID).ToList();
-                if (firstCondition.Count != 0 || secondCondition.Count != 0)
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, false);
-                else
-                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                using (T_SEntities obj = new T_SEntities())
+                {
+                    var teacher = obj.T_S.FirstOrDefault(t => t.T_S_ID == slot.teacher_subject_ID);
+                    var teacherSubjects = obj.T_S.Where(t => t.teacher_ID == teacher.teacher_ID).ToList();
+                    List<int> teacherSubjectsIDs = new List<int>();
+                    for (int i = 0; i < teacherSubjects.Count(); i++)
+                    {
+                        teacherSubjectsIDs.Add(teacherSubjects.ElementAt(i).T_S_ID);
+                    }
+                    var firstCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && s.class_ID == slot.class_ID).ToList();
+                    var secondCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && teacherSubjectsIDs.Contains((int)s.teacher_subject_ID)).ToList();
+                    if (firstCondition.Count != 0 || secondCondition.Count != 0)
+                        return Request.CreateResponse(HttpStatusCode.BadRequest, false);
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
             }
         }
 
