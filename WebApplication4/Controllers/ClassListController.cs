@@ -222,7 +222,39 @@ namespace WebApplication4.Controllers
                         var bySecondLanguage = GetBySecondLanguage(isBySecondlanguage);
                         var byGender = GetByGender(bySecondLanguage, _grade.grade_id, isByGender);
                         var byAlphabetical = GetAlphabetically(isAlphabetical, byGender, _grade.grade_id);
-                        if (!byAlphabetical.Equals(null))
+                        if (isAlphabetical && isBySecondlanguage && isByGender)
+                        {
+                            using (UserEntities studentEntity = new UserEntities())
+                            {
+                                IEnumerable<Student> studentlist = studentEntity.Students.Where(s => s.grade_ID == _grade.grade_id).ToList();
+                                studentlist.OrderBy(s => s.student_name);
+
+                                List<KeyValuePair<Class, List<Student>>> assignedClasses = new List<KeyValuePair<Class, List<Student>>>();
+                                List<Student> students = new List<Student>();
+                                for (int i = 0; i < byAlphabetical.Count(); i++)
+                                {
+                                    students.Add(studentlist.ElementAt(i));
+                                }
+                                /*while(students.Count == 0)
+                                {
+                                    Class c = classes.ElementAt(0);
+                                    for (int k = 1; k < classes.Count(); k++)
+                                    {
+                                        if (classes.ElementAt(k).class_capacity > c.class_capacity)
+                                        {
+                                            c = classes.ElementAt(k);
+                                        }
+                                    }
+                                    List<Student> currStudents = byAlphabetical.ElementAt(i).GetRange(0, c.class_capacity);
+                                    assignedClasses.Add(new KeyValuePair<Class, List<Student>>(c, currStudents));
+                                    byAlphabetical.ElementAt(i).RemoveRange(0, c.class_capacity - 1);
+                                    students.ElementAt(i).RemoveRange(0, c.class_capacity);
+                                    classes.Remove(c);
+                                }*/
+                                return Request.CreateResponse(HttpStatusCode.OK, assignedClasses);
+                            }
+                        }
+                        else
                         {
                             if (classes.Count < byAlphabetical.Count)
                             {
@@ -271,13 +303,13 @@ namespace WebApplication4.Controllers
                                         {
                                             if (classes.ElementAt(k).class_capacity > c.class_capacity)
                                             {
-                                                c = classes.ElementAt(i);
+                                                c = classes.ElementAt(k);
                                             }
                                         }
                                         currClass = c;
                                         List<Student> currStudents = byAlphabetical.ElementAt(i).GetRange(0, currClass.class_capacity);
                                         assignedClasses.Add(new KeyValuePair<Class, List<Student>>(currClass, currStudents));
-                                        byAlphabetical.ElementAt(i).RemoveRange(0, currClass.class_capacity-1);
+                                        byAlphabetical.ElementAt(i).RemoveRange(0, currClass.class_capacity - 1);
                                         students.ElementAt(i).RemoveRange(0, currClass.class_capacity);
                                         classes.Remove(currClass);
                                         i--;
@@ -285,14 +317,12 @@ namespace WebApplication4.Controllers
 
                                 }
                                 if (students.Count != 0)
-                                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of classes dosen't match your criteria......");
+                                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of classes dosen't match your criteria");
                                 else
                                     return Request.CreateResponse(HttpStatusCode.OK, assignedClasses);
 
                             }
                         }
-                        else
-                            return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of classes dosen't match your criteria-------");
                     }
                 }
                 else
