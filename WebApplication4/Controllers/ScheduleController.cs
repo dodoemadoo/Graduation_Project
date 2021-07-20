@@ -17,12 +17,34 @@ namespace WebApplication4.Controllers
             {
                 var firstCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && s.class_ID == slot.class_ID).ToList();
                 var secondCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && s.teacher_subject_ID == slot.teacher_subject_ID).ToList();
-                var thirdCondition = schedule.schedules.Where(s => s.class_ID == slot.class_ID && s.teacher_subject_ID == slot.teacher_subject_ID).ToList();
-                if (firstCondition.Count != 0 || secondCondition.Count != 0 || thirdCondition.Count != 0)
+                if (firstCondition.Count != 0 || secondCondition.Count != 0)
                     return Request.CreateResponse(HttpStatusCode.BadRequest, false);
                 else
                     return Request.CreateResponse(HttpStatusCode.OK, true);
             }
+        }
+
+        [HttpGet]
+        [Route("api/Schedule/Validate")]
+        public HttpResponseMessage getClassSchedule(int class_ID)
+        {
+            using (ClassEntities obj = new ClassEntities())
+            {
+                using (ScheduleEntities schedule = new ScheduleEntities())
+                {
+                    var entity = obj.Class.FirstOrDefault(c => c.class_ID == class_ID);
+                    if (entity == null)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Class with id = " + class_ID.ToString() + " not found");
+                    }
+                    else
+                    {
+                        var class_Schedule = schedule.schedules.Where(s => s.class_ID == class_ID).OrderBy(s=> s.week_Day);
+                        
+                    }
+                }
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, "");
         }
 
         [HttpPost]
@@ -57,7 +79,7 @@ namespace WebApplication4.Controllers
                     var entity = schedule.schedules.FirstOrDefault(s => s.slot_ID  == slot_id);
                     if (entity == null)
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Mark with id = " + slot_id.ToString() + " not found to update");
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "slot with id = " + slot_id.ToString() + " not found to update");
                     }
                     else
                     {
@@ -65,8 +87,14 @@ namespace WebApplication4.Controllers
                         entity.slot_ID = slot.slot_ID;
                         entity.class_ID = slot.class_ID;
                         entity.teacher_subject_ID = slot.teacher_subject_ID;
-                        schedule.SaveChanges();
-                        return Request.CreateResponse(HttpStatusCode.OK, entity);
+                        if (ValidateSlot(entity).StatusCode == HttpStatusCode.OK)
+                        {
+                            schedule.SaveChanges();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, entity);
+                        }
+                        else
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, "Cannot update this slot");
                     }
                 }
             }
@@ -75,5 +103,34 @@ namespace WebApplication4.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
+        [HttpDelete]
+        [Route("api/Schedule/Update")]
+        public HttpResponseMessage deleteSlot(int slot_id)
+        {
+            try
+            {
+                using (ScheduleEntities schedule = new ScheduleEntities())
+                {
+                    var entity = schedule.schedules.FirstOrDefault(s => s.slot_ID== slot_id);
+                    if (entity == null)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Slot with id = " + slot_id.ToString() + " not found to delete");
+                    }
+                    else
+                    {
+                        schedule.schedules.Remove(entity);
+                        schedule.SaveChanges();
+                        return Request.CreateResponse(HttpStatusCode.OK);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
     }
 }
