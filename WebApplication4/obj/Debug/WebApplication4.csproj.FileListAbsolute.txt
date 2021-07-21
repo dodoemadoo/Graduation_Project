@@ -296,7 +296,6 @@ C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\System.Web.WebPages.Razor.xml
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\Antlr3.Runtime.pdb
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.csproj.AssemblyReference.cache
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.csproj.CoreCompileInputs.cache
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.csproj.CopyComplete
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.dll

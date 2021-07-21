@@ -9,7 +9,7 @@ namespace WebApplication4.Controllers
 {
     public class ClassListController : ApiController
     {
-        [HttpGet]
+        [HttpPost]
         public List<List<Student>> GetAlphabetically(bool isAlphabetical, List<List<Student>> list, int _grade)
         {
 
@@ -62,7 +62,7 @@ namespace WebApplication4.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/ClassList/bySecondLanguage")]
         public List<List<Student>> GetBySecondLanguage(bool isBySecondlanguage)
         {
@@ -126,7 +126,7 @@ namespace WebApplication4.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/ClassList/byGender")]
         public List<List<Student>> GetByGender(List<List<Student>> students, int _grade, bool isByGender)
         {
@@ -182,9 +182,9 @@ namespace WebApplication4.Controllers
                 return students;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/ClassList")]
-        public HttpResponseMessage MakeClassList(string grade, bool isAlphabetical, bool isBySecondlanguage, bool isByGender)
+        public HttpResponseMessage MakeClassList([FromBody]string grade, bool isAlphabetical, bool isBySecondlanguage, bool isByGender)
         {
             using (GradeEntities gradeEntity = new GradeEntities())
             {
@@ -205,11 +205,6 @@ namespace WebApplication4.Controllers
                                 studentlist.OrderBy(s => s.student_name);
 
                                 List<KeyValuePair<Class, List<Student>>> assignedClasses = new List<KeyValuePair<Class, List<Student>>>();
-                                /*List<Student> students = new List<Student>();
-                                for (int i = 0; i < studentlist.Count(); i++)
-                                {
-                                    students.Add(studentlist.ElementAt(i));
-                                }*/
                                 while(studentlist.Count != 0)
                                 {
                                     Class c = classes.ElementAt(0);
@@ -222,10 +217,13 @@ namespace WebApplication4.Controllers
                                     }
                                     List<Student> currStudents = studentlist.GetRange(0, c.class_capacity);
                                     assignedClasses.Add(new KeyValuePair<Class, List<Student>>(c, currStudents));
-                                    studentlist.RemoveRange(0, c.class_capacity - 1);
+                                    studentlist.RemoveRange(0, c.class_capacity);
                                     //students.RemoveRange(0, c.class_capacity);
                                     classes.Remove(c);
+                                    
+                                    //return Request.CreateResponse(HttpStatusCode.OK,studentlist);
                                 }
+                                InsertStudentsClass(assignedClasses);
                                 return Request.CreateResponse(HttpStatusCode.OK, assignedClasses);
                             }
                         }
@@ -294,8 +292,10 @@ namespace WebApplication4.Controllers
                                 if (students.Count != 0)
                                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of classes dosen't match your criteria");
                                 else
+                                {
+                                    InsertStudentsClass(assignedClasses);
                                     return Request.CreateResponse(HttpStatusCode.OK, assignedClasses);
-
+                                }
                             }
                         }
                     }
@@ -303,6 +303,24 @@ namespace WebApplication4.Controllers
                 else
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid grade name...!");
             }
-        }    
+        }
+
+        public void InsertStudentsClass(List<KeyValuePair<Class, List<Student>>> assignedClasses)
+        {
+            using (StudentEntities StudentEntity = new StudentEntities())
+            {
+                for (int i = 0; i < assignedClasses.Count(); i++)
+                {
+                    for (int j = 0; j < assignedClasses.ElementAt(i).Value.Count(); j++)
+                    {
+                        //assignedClasses.ElementAt(i).Value.ElementAt(j).student_ID = assignedClasses.ElementAt(i).Key.class_ID;
+                        int id = assignedClasses.ElementAt(i).Value.ElementAt(j).student_ID;
+                        var entity = StudentEntity.Students.FirstOrDefault(s => s.student_ID == id);
+                        entity.class_ID = assignedClasses.ElementAt(i).Key.class_ID;
+                        StudentEntity.SaveChanges();
+                    }
+                }
+            }
+        }
     }
-}
+} 
