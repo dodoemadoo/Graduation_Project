@@ -50,11 +50,11 @@ namespace WebApplication4.Controllers
                     else
                     {
                         var class_Schedule = schedule.schedules.Where(s => s.class_ID == class_ID).OrderBy(s=> s.week_Day);
-                        
+                        class_Schedule.OrderBy(s => s.slot_ID);
+                        return Request.CreateResponse(HttpStatusCode.OK, class_Schedule);
                     }
                 }
             }
-            return Request.CreateResponse(HttpStatusCode.OK, "");
         }
 
         [HttpPost]

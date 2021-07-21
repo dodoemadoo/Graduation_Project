@@ -18,7 +18,7 @@ namespace WebApplication4.Controllers
 
                 using (UserEntities studentEntity = new UserEntities())
                 {
-                    if (!list.Equals(null))
+                    if (list != null && list.Count != 0)
                     {
 
                         if (isAlphabetical)
@@ -57,33 +57,6 @@ namespace WebApplication4.Controllers
                     }
                     else
                         return null;
-                    /*else
-                    {
-                        IEnumerable<Student> studentlist = studentEntity.Students.Where(s => s.grade_ID == _grade).ToList();
-                        if (isAlphabetical)
-                        {
-                            studentlist.OrderBy(s => s.student_name);
-                            return studentlist.ToList();
-                        }
-                        else
-                        {
-                            Random rand = new Random();
-                            List<int> numbers = new List<int>();
-                            List<Student> nonAlphabetical = new List<Student>();
-
-                            do
-                            {
-                                int number = rand.Next(0, list.Count());
-                                if (!numbers.Contains(number))
-                                {
-                                    numbers.Add(number);
-                                    nonAlphabetical.Add(studentlist.ElementAt(number));
-                                }
-                            } while (numbers.Count() < list.Count());
-
-                            return nonAlphabetical;
-                        }
-                    }*/
                 }
             }
 
@@ -163,7 +136,7 @@ namespace WebApplication4.Controllers
                 {
                     using (StudentEntities studentEntity = new StudentEntities())
                     {
-                        if (students != null)
+                        if (students != null && students.Count!=0)
                         {
                             List<List<Student>> list = new List<List<Student>>();
                             for (int i = 0; i < students.Count(); i++)
@@ -194,9 +167,11 @@ namespace WebApplication4.Controllers
                             females = studentEntity.Students.Where(s => s.student_Gender == "female" && s.grade_ID == _grade).ToList();
 
                             List<List<Student>> list = new List<List<Student>>();
-
-                            list.Add(males);
-                            list.Add(females);
+                            
+                            if(males.Count != 0)
+                                list.Add(males);
+                            if (females.Count != 0)
+                                list.Add(females);
                             return list;
                         }
                     }
@@ -222,20 +197,20 @@ namespace WebApplication4.Controllers
                         var bySecondLanguage = GetBySecondLanguage(isBySecondlanguage);
                         var byGender = GetByGender(bySecondLanguage, _grade.grade_id, isByGender);
                         var byAlphabetical = GetAlphabetically(isAlphabetical, byGender, _grade.grade_id);
-                        if (isAlphabetical && isBySecondlanguage && isByGender)
+                        if (isAlphabetical && !isBySecondlanguage && !isByGender)
                         {
-                            using (UserEntities studentEntity = new UserEntities())
+                            using (StudentEntities studentEntity = new StudentEntities())
                             {
-                                IEnumerable<Student> studentlist = studentEntity.Students.Where(s => s.grade_ID == _grade.grade_id).ToList();
+                                List<Student> studentlist = studentEntity.Students.Where(s => s.grade_ID == _grade.grade_id).ToList();
                                 studentlist.OrderBy(s => s.student_name);
 
                                 List<KeyValuePair<Class, List<Student>>> assignedClasses = new List<KeyValuePair<Class, List<Student>>>();
-                                List<Student> students = new List<Student>();
-                                for (int i = 0; i < byAlphabetical.Count(); i++)
+                                /*List<Student> students = new List<Student>();
+                                for (int i = 0; i < studentlist.Count(); i++)
                                 {
                                     students.Add(studentlist.ElementAt(i));
-                                }
-                                /*while(students.Count == 0)
+                                }*/
+                                while(studentlist.Count != 0)
                                 {
                                     Class c = classes.ElementAt(0);
                                     for (int k = 1; k < classes.Count(); k++)
@@ -245,12 +220,12 @@ namespace WebApplication4.Controllers
                                             c = classes.ElementAt(k);
                                         }
                                     }
-                                    List<Student> currStudents = byAlphabetical.ElementAt(i).GetRange(0, c.class_capacity);
+                                    List<Student> currStudents = studentlist.GetRange(0, c.class_capacity);
                                     assignedClasses.Add(new KeyValuePair<Class, List<Student>>(c, currStudents));
-                                    byAlphabetical.ElementAt(i).RemoveRange(0, c.class_capacity - 1);
-                                    students.ElementAt(i).RemoveRange(0, c.class_capacity);
+                                    studentlist.RemoveRange(0, c.class_capacity - 1);
+                                    //students.RemoveRange(0, c.class_capacity);
                                     classes.Remove(c);
-                                }*/
+                                }
                                 return Request.CreateResponse(HttpStatusCode.OK, assignedClasses);
                             }
                         }
