@@ -10,7 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class ClassAllocationController : ApiController
     {
-        // POST: api/Complain
+        // POST: api/ClassAllocation
         public HttpResponseMessage Post([FromBody] Class c)
         {
             try

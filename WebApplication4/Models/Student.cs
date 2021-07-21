@@ -24,5 +24,8 @@ namespace WebApplication4.Models
         public int parent_ID { get; set; }
         public int grade_ID { get; set; }
         public Nullable<int> class_ID { get; set; }
+    
+        public virtual Parent Parent { get; set; }
+        public virtual User User { get; set; }
     }
 }

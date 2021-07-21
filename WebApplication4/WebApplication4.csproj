@@ -433,7 +433,7 @@
       <DependentUpon>ScheduleModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
-      <DependentUpon>StudentModel.tt</DependentUpon>
+      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StudentModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -817,13 +817,6 @@
     <Content Include="Models\ClassModel.edmx.diagram">
       <DependentUpon>ClassModel.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\UserModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UserModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\UserModel.edmx.diagram">
-      <DependentUpon>UserModel.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\StudentModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>StudentModel.Designer.cs</LastGenOutput>
@@ -844,6 +837,13 @@
     </EntityDeploy>
     <Content Include="Models\T_SModel.edmx.diagram">
       <DependentUpon>T_SModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\UserModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UserModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\UserModel.edmx.diagram">
+      <DependentUpon>UserModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

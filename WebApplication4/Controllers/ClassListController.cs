@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
     public class ClassListController : ApiController
     {
         [HttpPost]
+        [Route("api/ClassList/GetAlphabetically")]
         public List<List<Student>> GetAlphabetically(bool isAlphabetical, List<List<Student>> list, int _grade)
         {
 

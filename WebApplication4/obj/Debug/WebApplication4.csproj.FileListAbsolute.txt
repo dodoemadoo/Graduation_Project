@@ -300,3 +300,4 @@ C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.csproj.CopyComplete
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.dll
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.pdb
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.csproj.AssemblyReference.cache

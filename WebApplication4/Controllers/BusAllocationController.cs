@@ -11,7 +11,7 @@ namespace WebApplication4.Controllers
     public class BusAllocationController : ApiController
     {
 
-        // POST: api/Complain
+        // POST: api/BusAllocation
         public HttpResponseMessage Post(int routeID, [FromBody] string busPlatNo)
         {
             try
