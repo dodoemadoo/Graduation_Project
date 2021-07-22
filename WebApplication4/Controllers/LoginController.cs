@@ -34,7 +34,8 @@ namespace WebApplication4.Controllers
                                 Student_ID = SUser_id.student_ID,
                                 SName = SUser_id.student_name,
                                 S_user_id = user_id.user_id,
-                                password = user_id.password
+                                password = user_id.password,
+                                type = user_id.type
                             }
                         ).Where(e => e.S_user_id == login.user_id).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, data);
@@ -51,7 +52,8 @@ namespace WebApplication4.Controllers
                                 administrator_id = AUser_id.administrator_id,
                                 AName = AUser_id.adminstrator_Name,
                                 A_user_id = user_id.user_id,
-                                password = user_id.password
+                                password = user_id.password,
+                                type = user_id.type
                             }
                         ).Where(e => e.A_user_id == login.user_id).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, data);
@@ -68,7 +70,8 @@ namespace WebApplication4.Controllers
                                 Teacher_ID = TUser_id.teacher_id,
                                 TName = TUser_id.teacher_Name,
                                 S_user_id = user_id.user_id,
-                                password = user_id.password
+                                password = user_id.password,
+                                type = user_id.type
                             }
                         ).Where(e => e.S_user_id == login.user_id).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, data);
@@ -85,7 +88,8 @@ namespace WebApplication4.Controllers
                                 Parent_ID = PUser_id.parent_id,
                                 SName = PUser_id.father_Name,
                                 S_user_id = user_id.user_id,
-                                password = user_id.password
+                                password = user_id.password,
+                                type = user_id.type
                             }
                         ).Where(e => e.S_user_id == login.user_id).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, data);
