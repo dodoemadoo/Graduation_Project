@@ -97,6 +97,7 @@ namespace WebApplication4.Controllers
                         entity.slot_ID = slot.slot_ID;
                         entity.class_ID = slot.class_ID;
                         entity.teacher_subject_ID = slot.teacher_subject_ID;
+                        entity.semester = slot.semester;
                         if (ValidateSlot(entity).StatusCode == HttpStatusCode.OK)
                         {
                             schedule.SaveChanges();
