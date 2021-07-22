@@ -11,7 +11,8 @@ namespace WebApplication4.Controllers
     public class DriverAllocationController : ApiController
     {
 
-        // POST: api/Complain
+        [HttpPost]
+        [Route("api/DriverAllocation")]
         public HttpResponseMessage Post([FromBody] string driverName, [FromUri]string busPlatNo)
         {
             try

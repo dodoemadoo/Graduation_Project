@@ -10,15 +10,19 @@ namespace WebApplication4.Controllers
 {
     public class BuildingController : ApiController
     {
-        public IEnumerable<Building> Get()
+        [HttpGet]
+        [Route("api/Building")]
+        public HttpResponseMessage Get()
         {
             using (BuildingEntities entities = new BuildingEntities())
             {
-                return entities.Building.ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, entities.Building.ToList());
 
             }
         }
 
+        [HttpGet]
+        [Route("api/Building")]
         public HttpResponseMessage Get(int building_id)
         {
             using (BuildingEntities entities = new BuildingEntities())
@@ -36,6 +40,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/Building")]
         public HttpResponseMessage Post([FromBody] Building B)
         {
             try
@@ -57,6 +63,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/Building")]
         public HttpResponseMessage Delete(int Building_id)
         {
             try
@@ -83,6 +91,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Building")]
         public HttpResponseMessage Put(int building_id, [FromBody] Building b)
         {
             try

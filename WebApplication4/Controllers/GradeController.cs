@@ -10,11 +10,13 @@ namespace WebApplication4.Controllers
 {
     public class GradeController : ApiController
     {
-        public IEnumerable<Grade> Get()
+        [HttpGet]
+        [Route("api/Grade")]
+        public HttpResponseMessage Get()
         {
             using (GradeEntities entities = new GradeEntities())
             {
-                return entities.Grade.ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, entities.Grade.ToList());
 
             }
         }
@@ -36,6 +38,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/Grade")]
         public HttpResponseMessage Post([FromBody] Grade grade)
         {
             try
@@ -57,6 +61,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/Grade")]
         public HttpResponseMessage Delete(int grade_id)
         {
             try
@@ -83,6 +89,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Grade")]
         public HttpResponseMessage Put(int grade_id, [FromBody] Grade grade)
         {
             try

@@ -12,17 +12,17 @@ namespace WebApplication4.Controllers
     {
         [HttpGet]
         [Route("api/Bus")]
-        public IEnumerable<Bus> Get()
+        public HttpResponseMessage Get()
         {
             using (BusEntities entities = new BusEntities())
             {
-                return entities.Bus.ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, entities.Bus.ToList());
 
             }
         }
 
         [HttpGet]
-        [Route("api/Bus/5")]
+        [Route("api/Bus")]
         public HttpResponseMessage Get(int id)
         {
             using (BusEntities entities = new BusEntities())
@@ -64,7 +64,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpDelete]
-        [Route("api/Bus/5")]
+        [Route("api/Bus")]
         public HttpResponseMessage Delete(int id)
         {
             try
@@ -92,7 +92,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpPut]
-        [Route("api/Bus/5")]
+        [Route("api/Bus")]
         public HttpResponseMessage Put(int id, [FromBody] Bus B)
         {
             try

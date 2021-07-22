@@ -10,15 +10,19 @@ namespace WebApplication4.Controllers
 {
     public class AttendenceController : ApiController
     {
-        public IEnumerable<Attendance> Get()
+        [HttpGet]
+        [Route("api/Attendence")]
+        public HttpResponseMessage Get()
         {
             using (AttendeceEntities entities = new AttendeceEntities())
             {
-                return entities.Attendance.ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, entities.Attendance.ToList());
 
             }
         }
 
+        [HttpGet]
+        [Route("api/Attendence")]
         public HttpResponseMessage Get(int att_id)
         {
             using (AttendeceEntities entities = new AttendeceEntities())
@@ -36,6 +40,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/Attendence")]
         public HttpResponseMessage Post([FromBody] Attendance att)
         {
             try
@@ -57,6 +63,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/Attendence")]
         public HttpResponseMessage Delete(int att_id)
         {
             try
@@ -83,6 +91,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Attendence")]
         public HttpResponseMessage Put(int att_id, [FromBody] Attendance att)
         {
             try
