@@ -125,15 +125,15 @@ namespace WebApplication4.Controllers
 
         [HttpPost]
         [Route("api/Teacher/TeacherToClass")]
-        public HttpResponseMessage TeacherToClass(int TS_ID, [FromBody] int classID)
+        public HttpResponseMessage TeacherToClass([FromBody] schedule obj)
         {
             try
             {
                 using (ScheduleEntities entities = new ScheduleEntities())
                 {
                         schedule entity = new schedule();
-                        entity.class_ID = classID;
-                        entity.teacher_subject_ID = TS_ID;
+                        entity.class_ID = obj.class_ID;
+                        entity.teacher_subject_ID = obj.teacher_subject_ID;
                         entities.schedules.Add(entity);
                         entities.SaveChanges();
 
@@ -151,15 +151,15 @@ namespace WebApplication4.Controllers
 
         [HttpPost]
         [Route("api/Teacher/TeacherToSubject")]
-        public HttpResponseMessage TeacherToSubject([FromBody] int teacherID, [FromUri] int SubjectID)
+        public HttpResponseMessage TeacherToSubject([FromBody]T_S obj)
         {
             try
             {
                 using (T_SEntities entities = new T_SEntities())
                 {
                     T_S ts = new T_S();
-                    ts.subject_ID = SubjectID;
-                    ts.teacher_ID = teacherID;
+                    ts.subject_ID = obj.subject_ID;
+                    ts.teacher_ID = obj.teacher_ID;
                     entities.T_S.Add(ts);
                     entities.SaveChanges();
 

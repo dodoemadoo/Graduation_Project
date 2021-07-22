@@ -824,19 +824,19 @@
     <Content Include="Models\SubjectModel.edmx.diagram">
       <DependentUpon>SubjectModel.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\ScheduleModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ScheduleModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ScheduleModel.edmx.diagram">
-      <DependentUpon>ScheduleModel.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\ComplainModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ComplainModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\ComplainModel.edmx.diagram">
       <DependentUpon>ComplainModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ScheduleModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ScheduleModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ScheduleModel.edmx.diagram">
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
