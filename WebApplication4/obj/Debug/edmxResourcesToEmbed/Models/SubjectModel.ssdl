@@ -13,6 +13,7 @@
     <Property Name="final_exam_grade" Type="float" Nullable="false" />
     <Property Name="grade_ID" Type="int" Nullable="false" />
     <Property Name="type" Type="varchar" MaxLength="255" />
+    <Property Name="semester" Type="varchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityContainer Name="SubjectModelStoreContainer">
     <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />

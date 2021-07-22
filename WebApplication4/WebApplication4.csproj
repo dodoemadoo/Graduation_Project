@@ -740,13 +740,6 @@
     <Content Include="Models\BusModel.edmx.diagram">
       <DependentUpon>BusModel.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\ComplainModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ComplainModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ComplainModel.edmx.diagram">
-      <DependentUpon>ComplainModel.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\DriverModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DriverModel.Designer.cs</LastGenOutput>
@@ -774,13 +767,6 @@
     </EntityDeploy>
     <Content Include="Models\RouteModel.edmx.diagram">
       <DependentUpon>RouteModel.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\SubjectModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SubjectModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\SubjectModel.edmx.diagram">
-      <DependentUpon>SubjectModel.edmx</DependentUpon>
     </Content>
     <EntityDeploy Include="Models\MarkModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -824,13 +810,6 @@
     <Content Include="Models\StudentModel.edmx.diagram">
       <DependentUpon>StudentModel.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\ScheduleModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ScheduleModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ScheduleModel.edmx.diagram">
-      <DependentUpon>ScheduleModel.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\T_SModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>T_SModel.Designer.cs</LastGenOutput>
@@ -844,6 +823,27 @@
     </EntityDeploy>
     <Content Include="Models\UserModel.edmx.diagram">
       <DependentUpon>UserModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\SubjectModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SubjectModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SubjectModel.edmx.diagram">
+      <DependentUpon>SubjectModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ScheduleModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ScheduleModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ScheduleModel.edmx.diagram">
+      <DependentUpon>ScheduleModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ComplainModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ComplainModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ComplainModel.edmx.diagram">
+      <DependentUpon>ComplainModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

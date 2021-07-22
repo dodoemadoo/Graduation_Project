@@ -25,6 +25,6 @@ namespace WebApplication4.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Subject> Subject { get; set; }
+        public virtual DbSet<Subject> Subjects { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="SubjectModelStoreContainer" CdmEntityContainer="SubjectEntities">
-    <EntitySetMapping Name="Subject">
+    <EntitySetMapping Name="Subjects">
       <EntityTypeMapping TypeName="SubjectModel.Subject">
         <MappingFragment StoreEntitySet="Subject">
           <ScalarProperty Name="subject_id" ColumnName="subject_id" />
@@ -13,6 +13,7 @@
           <ScalarProperty Name="final_exam_grade" ColumnName="final_exam_grade" />
           <ScalarProperty Name="grade_ID" ColumnName="grade_ID" />
           <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -13,8 +13,9 @@
     <Property Name="final_exam_grade" Type="Double" Nullable="false" />
     <Property Name="grade_ID" Type="Int32" Nullable="false" />
     <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="semester" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityContainer Name="SubjectEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Subject" EntityType="Self.Subject" />
+    <EntitySet Name="Subjects" EntityType="Self.Subject" />
   </EntityContainer>
 </Schema>

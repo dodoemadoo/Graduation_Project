@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e0c590f5b9534439ad898569dbd66e3f" Name="Diagram1">
+      <Diagram DiagramId="a79d4e9ecf9b4432a71ce1f8a84993a8" Name="Diagram1" ZoomLevel="65">
         <EntityTypeShape EntityType="ScheduleModel.schedule" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>

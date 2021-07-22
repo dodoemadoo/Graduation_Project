@@ -19,5 +19,6 @@ namespace WebApplication4.Models
         public Nullable<int> slot_ID { get; set; }
         public Nullable<int> class_ID { get; set; }
         public Nullable<int> teacher_subject_ID { get; set; }
+        public string semester { get; set; }
     }
 }

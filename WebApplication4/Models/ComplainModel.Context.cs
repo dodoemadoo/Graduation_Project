@@ -13,10 +13,10 @@ namespace WebApplication4.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ComplainSMSEntities : DbContext
+    public partial class ComplainEntities : DbContext
     {
-        public ComplainSMSEntities()
-            : base("name=ComplainSMSEntities")
+        public ComplainEntities()
+            : base("name=ComplainEntities")
         {
         }
     
@@ -25,6 +25,6 @@ namespace WebApplication4.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Complain> Complain { get; set; }
+        public virtual DbSet<Complain> Complains { get; set; }
     }
 }

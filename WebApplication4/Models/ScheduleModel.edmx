@@ -14,6 +14,7 @@
           <Property Name="slot_ID" Type="int" />
           <Property Name="class_ID" Type="int" />
           <Property Name="teacher_subject_ID" Type="int" />
+          <Property Name="semester" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ScheduleModelStoreContainer">
           <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
@@ -32,6 +33,7 @@
           <Property Name="slot_ID" Type="Int32" />
           <Property Name="class_ID" Type="Int32" />
           <Property Name="teacher_subject_ID" Type="Int32" />
+          <Property Name="semester" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ScheduleEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="schedules" EntityType="Self.schedule" />
@@ -50,6 +52,7 @@
                 <ScalarProperty Name="slot_ID" ColumnName="slot_ID" />
                 <ScalarProperty Name="class_ID" ColumnName="class_ID" />
                 <ScalarProperty Name="teacher_subject_ID" ColumnName="teacher_subject_ID" />
+                <ScalarProperty Name="semester" ColumnName="semester" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

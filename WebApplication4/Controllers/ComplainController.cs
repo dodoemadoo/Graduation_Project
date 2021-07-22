@@ -13,9 +13,9 @@ namespace WebApplication4.Controllers
         // GET: api/Complain
         public HttpResponseMessage Get()
         {
-            using (ComplainSMSEntities entities = new ComplainSMSEntities())
+            using (ComplainEntities entities = new ComplainEntities())
             {
-                return Request.CreateResponse(HttpStatusCode.OK, entities.Complain.ToList());
+                return Request.CreateResponse(HttpStatusCode.OK, entities.Complains.ToList());
 
             }
         }
@@ -23,9 +23,9 @@ namespace WebApplication4.Controllers
         // GET: api/Complain/5
         public HttpResponseMessage Get(int comp_id)
         {
-            using (ComplainSMSEntities entities = new ComplainSMSEntities())
+            using (ComplainEntities entities = new ComplainEntities())
             {
-                var entity = entities.Complain.FirstOrDefault(c => c.complain_id == comp_id);
+                var entity = entities.Complains.FirstOrDefault(c => c.complain_id == comp_id);
 
                 if (entity != null)
                 {
@@ -43,9 +43,9 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                using (ComplainSMSEntities entities = new ComplainSMSEntities())
+                using (ComplainEntities entities = new ComplainEntities())
                 {
-                    entities.Complain.Add(comp);
+                    entities.Complains.Add(comp);
                     entities.SaveChanges();
 
                     var message = Request.CreateResponse(HttpStatusCode.Created, comp);
@@ -65,9 +65,9 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                using (ComplainSMSEntities entities = new ComplainSMSEntities())
+                using (ComplainEntities entities = new ComplainEntities())
                 {
-                    var entity = entities.Complain.FirstOrDefault(c => c.complain_id == comp_id);
+                    var entity = entities.Complains.FirstOrDefault(c => c.complain_id == comp_id);
                     if (entity == null)
                     {
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Complain with id = " + comp_id.ToString() + " not found to update");
@@ -75,7 +75,7 @@ namespace WebApplication4.Controllers
                     else
                     {
                         entity.complain_Info = comp.complain_Info;
-                        entity.parent_ID = comp.parent_ID;
+                        entity.student_ID = comp.student_ID;
                         entity.administrator_ID = comp.administrator_ID;
                         entity.Status = comp.Status;
                         entities.SaveChanges();
@@ -94,16 +94,16 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                using (ComplainSMSEntities entities = new ComplainSMSEntities())
+                using (ComplainEntities entities = new ComplainEntities())
                 {
-                    var entity = entities.Complain.FirstOrDefault(c => c.complain_id == comp_id);
+                    var entity = entities.Complains.FirstOrDefault(c => c.complain_id == comp_id);
                     if (entity == null)
                     {
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Complain with id = " + comp_id.ToString() + " not found to delete");
                     }
                     else
                     {
-                        entities.Complain.Remove(entity);
+                        entities.Complains.Remove(entity);
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK);
                     }

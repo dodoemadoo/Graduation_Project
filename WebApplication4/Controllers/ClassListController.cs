@@ -81,7 +81,7 @@ namespace WebApplication4.Controllers
 
                         if (isBySecondlanguage)
                         {
-                            var SubjectList = subjectEntity.Subject.Where(s => s.type == "second_language").ToList();
+                            var SubjectList = subjectEntity.Subjects.Where(s => s.type == "second_language").ToList();
                             List<int> SubjectIDs = new List<int>();
                             for (int i = 0; i < SubjectList.Count(); i++)
                             {

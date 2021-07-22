@@ -17,7 +17,7 @@ namespace WebApplication4.Controllers
             {
                 using (SubjectEntities entities = new SubjectEntities())
                 {
-                    entities.Subject.Add(sub);
+                    entities.Subjects.Add(sub);
                     entities.SaveChanges();
 
                     var message = Request.CreateResponse(HttpStatusCode.Created, sub);

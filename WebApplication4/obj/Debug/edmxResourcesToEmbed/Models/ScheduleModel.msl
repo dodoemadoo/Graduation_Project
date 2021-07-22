@@ -9,6 +9,7 @@
           <ScalarProperty Name="slot_ID" ColumnName="slot_ID" />
           <ScalarProperty Name="class_ID" ColumnName="class_ID" />
           <ScalarProperty Name="teacher_subject_ID" ColumnName="teacher_subject_ID" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

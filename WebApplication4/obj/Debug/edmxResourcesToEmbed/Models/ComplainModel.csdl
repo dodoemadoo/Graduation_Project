@@ -6,11 +6,11 @@
     </Key>
     <Property Name="complain_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="complain_Info" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="parent_ID" Type="Int32" Nullable="false" />
     <Property Name="administrator_ID" Type="Int32" />
     <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="student_ID" Type="Int32" />
   </EntityType>
-  <EntityContainer Name="ComplainSMSEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Complain" EntityType="Self.Complain" />
+  <EntityContainer Name="ComplainEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Complains" EntityType="Self.Complain" />
   </EntityContainer>
 </Schema>

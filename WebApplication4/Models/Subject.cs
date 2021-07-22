@@ -23,5 +23,6 @@ namespace WebApplication4.Models
         public double final_exam_grade { get; set; }
         public int grade_ID { get; set; }
         public string type { get; set; }
+        public string semester { get; set; }
     }
 }

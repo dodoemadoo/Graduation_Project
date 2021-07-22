@@ -14,7 +14,7 @@ namespace WebApplication4.Controllers
         {
             using (SubjectEntities entities = new SubjectEntities())
             {
-                return entities.Subject.ToList();
+                return entities.Subjects.ToList();
 
             }
         }
@@ -23,7 +23,7 @@ namespace WebApplication4.Controllers
         {
             using (SubjectEntities entities = new SubjectEntities())
             {
-                var entity = entities.Subject.FirstOrDefault(A => A.subject_id == sub_id);
+                var entity = entities.Subjects.FirstOrDefault(A => A.subject_id == sub_id);
 
                 if (entity != null)
                 {
@@ -42,7 +42,7 @@ namespace WebApplication4.Controllers
             {
                 using (SubjectEntities entities = new SubjectEntities())
                 {
-                    entities.Subject.Add(sub);
+                    entities.Subjects.Add(sub);
                     entities.SaveChanges();
 
                     var message = Request.CreateResponse(HttpStatusCode.Created, sub);
@@ -63,14 +63,14 @@ namespace WebApplication4.Controllers
             {
                 using (SubjectEntities entities = new SubjectEntities())
                 {
-                    var entity = entities.Subject.FirstOrDefault(A => A.subject_id == sub_id);
+                    var entity = entities.Subjects.FirstOrDefault(A => A.subject_id == sub_id);
                     if (entity == null)
                     {
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "subject with id = " + sub_id.ToString() + " not found to delete");
                     }
                     else
                     {
-                        entities.Subject.Remove(entity);
+                        entities.Subjects.Remove(entity);
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK);
                     }
@@ -89,7 +89,7 @@ namespace WebApplication4.Controllers
             {
                 using (SubjectEntities entities = new SubjectEntities())
                 {
-                    var entity = entities.Subject.FirstOrDefault(a => a.subject_id == sub_id);
+                    var entity = entities.Subjects.FirstOrDefault(a => a.subject_id == sub_id);
                     if (entity == null)
                     {
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Subject with id = " + sub_id.ToString() + " not found to update");

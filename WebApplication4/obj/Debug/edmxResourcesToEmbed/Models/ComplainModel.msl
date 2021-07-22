@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ComplainModelStoreContainer" CdmEntityContainer="ComplainSMSEntities">
-    <EntitySetMapping Name="Complain">
+  <EntityContainerMapping StorageEntityContainer="ComplainModelStoreContainer" CdmEntityContainer="ComplainEntities">
+    <EntitySetMapping Name="Complains">
       <EntityTypeMapping TypeName="ComplainModel.Complain">
         <MappingFragment StoreEntitySet="Complain">
           <ScalarProperty Name="complain_id" ColumnName="complain_id" />
           <ScalarProperty Name="complain_Info" ColumnName="complain_Info" />
-          <ScalarProperty Name="parent_ID" ColumnName="parent_ID" />
           <ScalarProperty Name="administrator_ID" ColumnName="administrator_ID" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="student_ID" ColumnName="student_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

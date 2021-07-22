@@ -25,7 +25,7 @@ namespace WebApplication4.Controllers
                     }
                     using (SubjectEntities subject = new SubjectEntities())
                     {
-                        Subject _subject = subject.Subject.FirstOrDefault(s => s.subject_Name.Equals(subjectName));
+                        Subject _subject = subject.Subjects.FirstOrDefault(s => s.subject_Name.Equals(subjectName));
                         SubjectID = _subject.subject_id;
                     }
                     T_S ts = new T_S();

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SubjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SubjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Subject">
           <Key>
             <PropertyRef Name="subject_id" />
@@ -18,11 +18,13 @@
           <Property Name="final_exam_grade" Type="float" Nullable="false" />
           <Property Name="grade_ID" Type="int" Nullable="false" />
           <Property Name="type" Type="varchar" MaxLength="255" />
+          <Property Name="semester" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityContainer Name="SubjectModelStoreContainer">
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SubjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -39,9 +41,10 @@
           <Property Name="final_exam_grade" Type="Double" Nullable="false" />
           <Property Name="grade_ID" Type="Int32" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="semester" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityContainer Name="SubjectEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Subject" EntityType="Self.Subject" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -49,7 +52,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SubjectModelStoreContainer" CdmEntityContainer="SubjectEntities">
-          <EntitySetMapping Name="Subject">
+          <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="SubjectModel.Subject">
               <MappingFragment StoreEntitySet="Subject">
                 <ScalarProperty Name="subject_id" ColumnName="subject_id" />
@@ -61,6 +64,7 @@
                 <ScalarProperty Name="final_exam_grade" ColumnName="final_exam_grade" />
                 <ScalarProperty Name="grade_ID" ColumnName="grade_ID" />
                 <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="semester" ColumnName="semester" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -78,7 +82,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
