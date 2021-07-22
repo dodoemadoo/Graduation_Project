@@ -27,7 +27,7 @@ namespace WebApplication4.Controllers
         }
 
         //This resource is For all types of role
-        [Authorize(Roles = "SuperAdmin, Admin, user")]
+        [Authorize(Roles = "admin,student,teacher,parent")]
         [HttpGet]
         [Route("api/test/resource1")]
         public IHttpActionResult GetResource1()

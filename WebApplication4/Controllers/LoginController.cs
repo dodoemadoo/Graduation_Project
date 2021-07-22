@@ -10,7 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class LoginController : ApiController
     {
-        [Authorize(Roles = "Admin,Student,Teacher,Parent")]
+        [Authorize(Roles = "admin,student,teacher,parent")]
         [HttpGet]
         [Route("api/Login")]
         public HttpResponseMessage Get()
@@ -36,7 +36,7 @@ namespace WebApplication4.Controllers
         }
 
 
-        [Authorize(Roles = "Admin,Student,Teacher,Parent")]
+        [Authorize(Roles = "admin,student,teacher,parent")]
         [HttpPost]
         [Route("api/Login")]
         // Post: api/Login
