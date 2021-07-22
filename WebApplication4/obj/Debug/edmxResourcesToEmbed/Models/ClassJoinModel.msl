@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ClassJoinModelStoreContainer" CdmEntityContainer="ClassJoinEntities">
+    <EntitySetMapping Name="Buildings">
+      <EntityTypeMapping TypeName="ClassJoinModel.Building">
+        <MappingFragment StoreEntitySet="Building">
+          <ScalarProperty Name="building_ID" ColumnName="building_ID" />
+          <ScalarProperty Name="building_Name" ColumnName="building_Name" />
+          <ScalarProperty Name="building_location" ColumnName="building_location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Classes">
+      <EntityTypeMapping TypeName="ClassJoinModel.Class">
+        <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="class_ID" ColumnName="class_ID" />
+          <ScalarProperty Name="class_name" ColumnName="class_name" />
+          <ScalarProperty Name="class_capacity" ColumnName="class_capacity" />
+          <ScalarProperty Name="class_Type" ColumnName="class_Type" />
+          <ScalarProperty Name="building_ID" ColumnName="building_ID" />
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grades">
+      <EntityTypeMapping TypeName="ClassJoinModel.Grade">
+        <MappingFragment StoreEntitySet="Grade">
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+          <ScalarProperty Name="grade_Capcity" ColumnName="grade_Capcity" />
+          <ScalarProperty Name="grade_Name" ColumnName="grade_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

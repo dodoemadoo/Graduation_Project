@@ -12,7 +12,6 @@ namespace WebApplication4.Controllers
     {
         [HttpPost]
         [Route("api/Login")]
-        // Post: api/Login
         public HttpResponseMessage Post([FromBody] User login)
         {
             using (UserEntities userEntity = new UserEntities())

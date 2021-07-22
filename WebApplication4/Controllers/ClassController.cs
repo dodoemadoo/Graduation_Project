@@ -16,8 +16,22 @@ namespace WebApplication4.Controllers
         {
             using (ClassEntities entities = new ClassEntities())
             {
-                return Request.CreateResponse(HttpStatusCode.OK, entities.Class.ToList());
-
+                using (ClassJoinEntities obj = new ClassJoinEntities())
+                {
+                    var query = from c in obj.Classes
+                                join b in obj.Buildings on c.building_ID equals b.building_ID
+                                join g in obj.Grades on c.grade_id equals g.grade_id
+                                select new
+                                {
+                                    c.class_ID,
+                                    c.class_name,
+                                    c.class_capacity,
+                                    c.class_Type,
+                                    b.building_Name,
+                                    g.grade_Name
+                                };
+                    return Request.CreateResponse(HttpStatusCode.OK, query.ToList());
+                }
             }
         }
 
@@ -35,7 +49,7 @@ namespace WebApplication4.Controllers
                 }
                 else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "class  with id = " + id.ToString() + " not found to update");
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "class  with id = " + id.ToString() + " not found");
                 }
             }
         }

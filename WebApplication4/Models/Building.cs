@@ -14,8 +14,17 @@ namespace WebApplication4.Models
     
     public partial class Building
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Building()
+        {
+            this.Classes = new HashSet<Class>();
+        }
+    
         public int building_ID { get; set; }
         public string building_Name { get; set; }
         public string building_location { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Class> Classes { get; set; }
     }
 }

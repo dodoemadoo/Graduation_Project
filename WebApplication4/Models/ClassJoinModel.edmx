@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ClassJoinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="building_ID" />
+          </Key>
+          <Property Name="building_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="building_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="building_location" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="class_ID" />
+          </Key>
+          <Property Name="class_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="class_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="class_capacity" Type="int" Nullable="false" />
+          <Property Name="class_Type" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="building_ID" Type="int" Nullable="false" />
+          <Property Name="grade_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="grade_id" />
+          </Key>
+          <Property Name="grade_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="grade_Capcity" Type="int" Nullable="false" />
+          <Property Name="grade_Name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Class__building___3A81B327">
+          <End Role="Building" Type="Self.Building" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Building">
+              <PropertyRef Name="building_ID" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="building_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Class__grade_id__3B75D760">
+          <End Role="Grade" Type="Self.Grade" Multiplicity="0..1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="grade_id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="grade_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClassJoinModelStoreContainer">
+          <EntitySet Name="Building" EntityType="Self.Building" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Class__building___3A81B327" Association="Self.FK__Class__building___3A81B327">
+            <End Role="Building" EntitySet="Building" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Class__grade_id__3B75D760" Association="Self.FK__Class__grade_id__3B75D760">
+            <End Role="Grade" EntitySet="Grade" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClassJoinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="building_ID" />
+          </Key>
+          <Property Name="building_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="building_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="building_location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Classes" Relationship="Self.FK__Class__building___3A81B327" FromRole="Building" ToRole="Class" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="class_ID" />
+          </Key>
+          <Property Name="class_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="class_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="class_capacity" Type="Int32" Nullable="false" />
+          <Property Name="class_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="building_ID" Type="Int32" Nullable="false" />
+          <Property Name="grade_id" Type="Int32" />
+          <NavigationProperty Name="Building" Relationship="Self.FK__Class__building___3A81B327" FromRole="Class" ToRole="Building" />
+          <NavigationProperty Name="Grade" Relationship="Self.FK__Class__grade_id__3B75D760" FromRole="Class" ToRole="Grade" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="grade_id" />
+          </Key>
+          <Property Name="grade_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="grade_Capcity" Type="Int32" Nullable="false" />
+          <Property Name="grade_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Classes" Relationship="Self.FK__Class__grade_id__3B75D760" FromRole="Grade" ToRole="Class" />
+        </EntityType>
+        <Association Name="FK__Class__building___3A81B327">
+          <End Role="Building" Type="Self.Building" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Building">
+              <PropertyRef Name="building_ID" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="building_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Class__grade_id__3B75D760">
+          <End Role="Grade" Type="Self.Grade" Multiplicity="0..1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="grade_id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="grade_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClassJoinEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Buildings" EntityType="Self.Building" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Grades" EntityType="Self.Grade" />
+          <AssociationSet Name="FK__Class__building___3A81B327" Association="Self.FK__Class__building___3A81B327">
+            <End Role="Building" EntitySet="Buildings" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Class__grade_id__3B75D760" Association="Self.FK__Class__grade_id__3B75D760">
+            <End Role="Grade" EntitySet="Grades" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClassJoinModelStoreContainer" CdmEntityContainer="ClassJoinEntities">
+          <EntitySetMapping Name="Buildings">
+            <EntityTypeMapping TypeName="ClassJoinModel.Building">
+              <MappingFragment StoreEntitySet="Building">
+                <ScalarProperty Name="building_ID" ColumnName="building_ID" />
+                <ScalarProperty Name="building_Name" ColumnName="building_Name" />
+                <ScalarProperty Name="building_location" ColumnName="building_location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="ClassJoinModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="class_ID" ColumnName="class_ID" />
+                <ScalarProperty Name="class_name" ColumnName="class_name" />
+                <ScalarProperty Name="class_capacity" ColumnName="class_capacity" />
+                <ScalarProperty Name="class_Type" ColumnName="class_Type" />
+                <ScalarProperty Name="building_ID" ColumnName="building_ID" />
+                <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grades">
+            <EntityTypeMapping TypeName="ClassJoinModel.Grade">
+              <MappingFragment StoreEntitySet="Grade">
+                <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+                <ScalarProperty Name="grade_Capcity" ColumnName="grade_Capcity" />
+                <ScalarProperty Name="grade_Name" ColumnName="grade_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

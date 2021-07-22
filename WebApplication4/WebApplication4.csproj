@@ -225,7 +225,7 @@
       <DependentUpon>AttendanceModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Building.cs">
-      <DependentUpon>BuildingModel.tt</DependentUpon>
+      <DependentUpon>ClassJoinModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BuildingModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -279,7 +279,22 @@
       <DependentUpon>BusRouteModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Class.cs">
-      <DependentUpon>ClassModel.tt</DependentUpon>
+      <DependentUpon>ClassJoinModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClassJoinModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassJoinModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClassJoinModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassJoinModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClassJoinModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassJoinModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ClassModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -333,7 +348,7 @@
       <DependentUpon>DriverModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Grade.cs">
-      <DependentUpon>GradeModel.tt</DependentUpon>
+      <DependentUpon>ClassJoinModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GradeModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -567,6 +582,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BusRouteModel.edmx</DependentUpon>
       <LastGenOutput>BusRouteModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ClassJoinModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClassJoinModel.edmx</DependentUpon>
+      <LastGenOutput>ClassJoinModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ClassJoinModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClassJoinModel.edmx</DependentUpon>
+      <LastGenOutput>ClassJoinModel.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ClassModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -837,6 +862,13 @@
     </EntityDeploy>
     <Content Include="Models\ScheduleModel.edmx.diagram">
       <DependentUpon>ScheduleModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ClassJoinModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClassJoinModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ClassJoinModel.edmx.diagram">
+      <DependentUpon>ClassJoinModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

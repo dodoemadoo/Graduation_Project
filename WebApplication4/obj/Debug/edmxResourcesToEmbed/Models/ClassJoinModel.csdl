@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClassJoinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Building">
+    <Key>
+      <PropertyRef Name="building_ID" />
+    </Key>
+    <Property Name="building_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="building_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="building_location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK__Class__building___3A81B327" FromRole="Building" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="class_ID" />
+    </Key>
+    <Property Name="class_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="class_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="class_capacity" Type="Int32" Nullable="false" />
+    <Property Name="class_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="building_ID" Type="Int32" Nullable="false" />
+    <Property Name="grade_id" Type="Int32" />
+    <NavigationProperty Name="Building" Relationship="Self.FK__Class__building___3A81B327" FromRole="Class" ToRole="Building" />
+    <NavigationProperty Name="Grade" Relationship="Self.FK__Class__grade_id__3B75D760" FromRole="Class" ToRole="Grade" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="grade_id" />
+    </Key>
+    <Property Name="grade_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="grade_Capcity" Type="Int32" Nullable="false" />
+    <Property Name="grade_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK__Class__grade_id__3B75D760" FromRole="Grade" ToRole="Class" />
+  </EntityType>
+  <Association Name="FK__Class__building___3A81B327">
+    <End Role="Building" Type="Self.Building" Multiplicity="1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Building">
+        <PropertyRef Name="building_ID" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="building_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Class__grade_id__3B75D760">
+    <End Role="Grade" Type="Self.Grade" Multiplicity="0..1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClassJoinEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Buildings" EntityType="Self.Building" />
+    <EntitySet Name="Classes" EntityType="Self.Class" />
+    <EntitySet Name="Grades" EntityType="Self.Grade" />
+    <AssociationSet Name="FK__Class__building___3A81B327" Association="Self.FK__Class__building___3A81B327">
+      <End Role="Building" EntitySet="Buildings" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Class__grade_id__3B75D760" Association="Self.FK__Class__grade_id__3B75D760">
+      <End Role="Grade" EntitySet="Grades" />
+      <End Role="Class" EntitySet="Classes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
