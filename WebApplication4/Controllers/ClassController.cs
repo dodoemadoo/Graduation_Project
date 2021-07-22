@@ -122,27 +122,82 @@ namespace WebApplication4.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("api/Class/ClassAllocation")]
-        public HttpResponseMessage ClassAllocation([FromBody] Class c)
+        [HttpGet]
+        [Route("api/Class/Get_nonAssigned_classes")]
+        public HttpResponseMessage Get_nonAssigned_classes()
         {
-            try
+            using (ClassEntities entities = new ClassEntities())
             {
-                using (ClassEntities entities = new ClassEntities())
-                {
-                    entities.Class.Add(c);
-                    entities.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, entities.Class.Where(c => c.grade_id == null).ToList());
+            }
+        }
 
-                    var message = Request.CreateResponse(HttpStatusCode.Created, c);
-                    message.Headers.Location = new Uri(Request.RequestUri + c.class_ID.ToString());
-                    return message;
+        [HttpGet]
+        [Route("api/Class/Get_Classes_for_Grade")]
+        public HttpResponseMessage Get_Classes_for_Grade()
+        {
+            using (ClassEntities entities = new ClassEntities())
+            {
+                IEnumerable<Class> list = entities.Class.ToList();
+                List<KeyValuePair<string, string>> list2 = new List<KeyValuePair<string, string>>();
+                string gradeName;
+                for (int i = 0; i < list.Count(); i++)
+                {
+                    if (list.ElementAt(i).grade_id != null)
+                    {
+                        using (GradeEntities gradeEntities = new GradeEntities())
+                        {
+                            int gradeId = (int)list.ElementAt(i).grade_id;
+                            Grade _grade = gradeEntities.Grade.FirstOrDefault(g => g.grade_id == gradeId);
+                            gradeName = _grade.grade_Name;
+                        }
+                        list2.Add(new KeyValuePair<string, string>(list.ElementAt(i).class_name, gradeName));
+                    }
+                    else
+                    {
+                        list2.Add(new KeyValuePair<string, string>(list.ElementAt(i).class_name, "Not Assigned"));
+                    }
 
                 }
+                return Request.CreateResponse(HttpStatusCode.OK, list2.ToList());
             }
-            catch (Exception ex)
+        }
+
+        [HttpGet]
+        [Route("api/Class/Get_capacity")]
+        public HttpResponseMessage Get_capacity([FromBody] int gradeID)
+        {
+            using (ClassEntities entities = new ClassEntities())
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                int studentCapacity = 0, classCapacity = 0;
+                using (StudentEntities studentEntities = new StudentEntities())
+                {
+                    IEnumerable<Student> list = studentEntities.Students.Where(s => s.grade_ID == gradeID).ToList();
+                    if (list != null)
+                    {
+                        studentCapacity = list.Count();
+                    }
+                }
+                IEnumerable<Class> list2 = entities.Class.Where(c => c.grade_id == gradeID).ToList();
+                if (list2 != null)
+                {
+                    for (int i = 0; i < list2.Count(); i++)
+                    {
+                        classCapacity += list2.ElementAt(i).class_capacity;
+                    }
+                }
+                int capacity = studentCapacity - classCapacity;
+                if (capacity <= 0)
+                {
+                    bool check = true;
+                    return Request.CreateResponse(HttpStatusCode.OK, check);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, capacity);
+                }
             }
+
         }
     }
 }

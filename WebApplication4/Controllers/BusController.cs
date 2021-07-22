@@ -121,7 +121,7 @@ namespace WebApplication4.Controllers
 
         [HttpPost]
         [Route("api/Bus/BusAllocation")]
-        public HttpResponseMessage Post(int routeID, [FromBody] string busPlatNo)
+        public HttpResponseMessage BusAllocation(int routeID, [FromBody] string busPlatNo)
         {
             try
             {
