@@ -10,15 +10,19 @@ namespace WebApplication4.Controllers
 {
     public class MarkController : ApiController
     {
-        public IEnumerable<mark> Get()
+        [HttpGet]
+        [Route("api/Mark")]
+        public HttpResponseMessage Get()
         {
             using (MarkEntities entities = new MarkEntities())
             {
-                return entities.mark.ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, entities.mark.ToList());
 
             }
         }
 
+        [HttpGet]
+        [Route("api/Mark")]
         public HttpResponseMessage Get(int mark_id)
         {
             using (MarkEntities entities = new MarkEntities())
@@ -36,6 +40,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/Mark")]
         public HttpResponseMessage Post([FromBody] mark m)
         {
             try
@@ -57,6 +63,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/Mark")]
         public HttpResponseMessage Delete(int mark_id)
         {
             try
@@ -83,6 +91,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Mark")]
         public HttpResponseMessage Put(int mark_id, [FromBody] mark m)
         {
             try

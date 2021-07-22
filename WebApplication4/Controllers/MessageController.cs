@@ -11,51 +11,57 @@ namespace WebApplication4.Controllers
     public class MessageController : ApiController
     {
 
-        public IEnumerable<Messages> Get_sent_messages(int sender_id)
+        [HttpGet]
+        [Route("api/Message/Get_sent_messages")]
+        public HttpResponseMessage Get_sent_messages(int sender_id)
         {
             using (MessageEntities entities = new MessageEntities())
             {
-                IEnumerable<Messages> list = entities.Messages.Where(m => m.sender_ID == sender_id).ToList();
+                List<Messages> list = entities.Messages.Where(m => m.sender_ID == sender_id).ToList();
 
-                if (list != null)
+                if (list.Count != 0)
                 {
-                    return list.OrderBy(x => x.time).Reverse();
+                    return Request.CreateResponse(HttpStatusCode.OK, list.OrderBy(x => x.time).Reverse());
                 }
                 else
                 {
-                    return null;
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound,"There is no messages");
                 }
             }
         }
 
-        public IEnumerable<Messages> Get_recieved_messages(int reciever_id)
+        [HttpGet]
+        [Route("api/Message/Get_recieved_messages")]
+        public HttpResponseMessage Get_recieved_messages(int reciever_id)
         {
             using (MessageEntities entities = new MessageEntities())
             {
-                IEnumerable<Messages> list = entities.Messages.Where(m => m.receiver_ID == reciever_id).ToList();
+                List<Messages> list = entities.Messages.Where(m => m.receiver_ID == reciever_id).ToList();
 
                 if (list != null)
                 {
-                    return list.OrderBy(x=>x.time).Reverse();
+                    return Request.CreateResponse(HttpStatusCode.OK, list.OrderBy(x=>x.time).Reverse());
                 }
                 else
                 {
-                    return null;
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "There is no messages");
                 }
             }
         }
 
-        public HttpResponseMessage Post(int sender_id, int reciever_id, [FromBody] string text, [FromUri] string about)
+        [HttpPost]
+        [Route("api/Message")]
+        public HttpResponseMessage Post([FromBody] Messages m)
         {
             try
             {
                 using (MessageEntities entities = new MessageEntities())
                 {
                     Messages _message = new Messages();
-                    _message.sender_ID = sender_id;
-                    _message.receiver_ID = reciever_id;
-                    _message.message_text = text;
-                    _message.about_text = about;
+                    _message.sender_ID = m.sender_ID;
+                    _message.receiver_ID = m.receiver_ID;
+                    _message.message_text = m.message_text;
+                    _message.about_text = m.about_text;
                     _message.time = DateTime.UtcNow;
                     entities.Messages.Add(_message);
                     entities.SaveChanges();
@@ -72,6 +78,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/Message")]
         public HttpResponseMessage Delete(int msg_id)
         {
             try

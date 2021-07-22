@@ -12,17 +12,16 @@ namespace WebApplication4.Controllers
     {
         [HttpGet]
         [Route("api/Subject")]
-        public IEnumerable<Subject> Get()
+        public HttpResponseMessage Get()
         {
             using (SubjectEntities entities = new SubjectEntities())
             {
-                return entities.Subjects.ToList();
-
+                return Request.CreateResponse(HttpStatusCode.OK, entities.Subjects.ToList());
             }
         }
 
         [HttpGet]
-        [Route("api/Subject/5")]
+        [Route("api/Subject")]
         public HttpResponseMessage Get(int sub_id)
         {
             using (SubjectEntities entities = new SubjectEntities())
@@ -64,7 +63,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpDelete]
-        [Route("api/Subject/5")]
+        [Route("api/Subject")]
         public HttpResponseMessage Delete(int sub_id)
         {
             try
@@ -92,7 +91,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpPut]
-        [Route("api/Subject/5")]
+        [Route("api/Subject")]
         public HttpResponseMessage Put(int sub_id, [FromBody] Subject s)
         {
             try
@@ -114,6 +113,7 @@ namespace WebApplication4.Controllers
                         entity.final_exam_grade = s.final_exam_grade;
                         entity.grade_ID = s.grade_ID;
                         entity.type = s.type;
+                        entity.semester = s.semester;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, entity);
                     }

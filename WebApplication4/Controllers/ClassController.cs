@@ -22,7 +22,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpGet]
-        [Route("api/Class/5")]
+        [Route("api/Class")]
         public HttpResponseMessage Get(int id)
         {
             using (ClassEntities entities = new ClassEntities())
@@ -64,7 +64,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpPut]
-        [Route("api/Class/5")]
+        [Route("api/Class")]
         public HttpResponseMessage Put(int id, [FromBody] Class c)
         {
             try
@@ -95,7 +95,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpDelete]
-        [Route("api/Class/5")]
+        [Route("api/Class")]
         public HttpResponseMessage Delete(int id)
         {
             try

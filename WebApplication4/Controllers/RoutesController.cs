@@ -10,15 +10,19 @@ namespace WebApplication4.Controllers
 {
     public class RoutesController : ApiController
     {
-        public IEnumerable<Route> Get()
+        [HttpGet]
+        [Route("api/Routes")]
+        public HttpResponseMessage Get()
         {
             using (RouteEntities entities = new RouteEntities())
             {
-                return entities.Route.ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, entities.Route.ToList());
 
             }
         }
 
+        [HttpGet]
+        [Route("api/Routes")]
         public HttpResponseMessage Get(int id)
         {
             using (RouteEntities entities = new RouteEntities())
@@ -31,11 +35,13 @@ namespace WebApplication4.Controllers
                 }
                 else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Route  with id = " + id.ToString() + " not found to update");
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Route  with id = " + id.ToString() + " not found");
                 }
             }
         }
 
+        [HttpPost]
+        [Route("api/Routes")]
         public HttpResponseMessage Post([FromBody] Route R)
         {
             try
@@ -57,6 +63,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/Routes")]
         public HttpResponseMessage Delete(int id)
         {
             try
@@ -83,6 +91,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Routes")]
         public HttpResponseMessage Put(int id, [FromBody] Route R)
         {
             try

@@ -12,17 +12,17 @@ namespace WebApplication4.Controllers
     {
         [HttpGet]
         [Route("api/Teacher")]
-        public IEnumerable<Teacher> Get()
+        public HttpResponseMessage Get()
         {
             using (TeacherEntities entities = new TeacherEntities())
             {
-                return entities.Teacher.ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, entities.Teacher.ToList());
 
             }
         }
 
         [HttpGet]
-        [Route("api/Teacher/5")]
+        [Route("api/Teacher")]
         public HttpResponseMessage Get(int id)
         {
             using (TeacherEntities entities = new TeacherEntities())
@@ -35,7 +35,7 @@ namespace WebApplication4.Controllers
                 }
                 else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Teacher with id = " + id.ToString() + " not found to update");
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Teacher with id = " + id.ToString() + " not found");
                 }
             }
         }
@@ -64,7 +64,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpDelete]
-        [Route("api/Teacher/5")]
+        [Route("api/Teacher")]
         public HttpResponseMessage Delete(int id)
         {
             try
@@ -92,7 +92,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpPut]
-        [Route("api/Teacher/5")]
+        [Route("api/Teacher")]
         public HttpResponseMessage Put(int id, [FromBody] Teacher T)
         {
             try
