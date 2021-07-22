@@ -24,8 +24,8 @@ namespace WebApplication4.Controllers
                     {
                         teacherSubjectsIDs.Add(teacherSubjects.ElementAt(i).T_S_ID);
                     }
-                    var firstCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && s.class_ID == slot.class_ID).ToList();
-                    var secondCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && teacherSubjectsIDs.Contains((int)s.teacher_subject_ID)).ToList();
+                    var firstCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && s.class_ID == slot.class_ID && s.semester == slot.semester).ToList();
+                    var secondCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && teacherSubjectsIDs.Contains((int)s.teacher_subject_ID) && s.semester == slot.semester).ToList();
                     if (firstCondition.Count != 0 || secondCondition.Count != 0)
                         return Request.CreateResponse(HttpStatusCode.BadRequest, false);
                     else
