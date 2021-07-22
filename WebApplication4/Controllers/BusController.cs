@@ -10,6 +10,8 @@ namespace WebApplication4.Controllers
 {
     public class BusController : ApiController
     {
+        [HttpGet]
+        [Route("api/Bus")]
         public IEnumerable<Bus> Get()
         {
             using (BusEntities entities = new BusEntities())
@@ -19,6 +21,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/Bus/5")]
         public HttpResponseMessage Get(int id)
         {
             using (BusEntities entities = new BusEntities())
@@ -36,6 +40,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/Bus")]
         public HttpResponseMessage Post([FromBody] Bus B)
         {
             try
@@ -57,6 +63,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/Bus/5")]
         public HttpResponseMessage Delete(int id)
         {
             try
@@ -83,6 +91,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Bus/5")]
         public HttpResponseMessage Put(int id, [FromBody] Bus B)
         {
             try
@@ -108,5 +118,55 @@ namespace WebApplication4.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
+        [HttpPost]
+        [Route("api/Bus/BusAllocation")]
+        public HttpResponseMessage Post(int routeID, [FromBody] string busPlatNo)
+        {
+            try
+            {
+                using (BusRouteEntities entities = new BusRouteEntities())
+                {
+                    int busID;
+                    using (BusEntities busEntities = new BusEntities())
+                    {
+                        Bus _bus = busEntities.Bus.FirstOrDefault(b => b.bus_number_plate.Equals(busPlatNo));
+                        busID = _bus.bus_ID;
+                    }
+                    Bus_Route BS = entities.Bus_Route.FirstOrDefault(bs => bs.route_ID == routeID);
+                    Bus_Route BS3 = entities.Bus_Route.FirstOrDefault(bs => bs.bus_ID == busID);
+                    if (BS != null && BS.bus_ID == null)
+                    {
+                        BS.bus_ID = busID;
+                        entities.SaveChanges();
+                        return Request.CreateResponse(HttpStatusCode.OK, BS);
+                    }
+                    if (BS3 != null && BS3.route_ID == null)
+                    {
+                        BS3.route_ID = routeID;
+                        entities.SaveChanges();
+                        return Request.CreateResponse(HttpStatusCode.OK, BS3);
+                    }
+                    else
+                    {
+                        Bus_Route BS2 = new Bus_Route();
+                        BS2.bus_ID = busID;
+                        BS2.route_ID = routeID;
+                        entities.Bus_Route.Add(BS2);
+                        entities.SaveChanges();
+
+                        var message = Request.CreateResponse(HttpStatusCode.Created, BS2);
+                        message.Headers.Location = new Uri(Request.RequestUri + BS2.bus_Route_ID.ToString());
+                        return message;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
     }
 }

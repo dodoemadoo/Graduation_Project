@@ -10,7 +10,8 @@ namespace WebApplication4.Controllers
 {
     public class ClassController : ApiController
     {
-        // GET: api/Class
+        [HttpGet]
+        [Route("api/Class")]
         public HttpResponseMessage Get()
         {
             using (ClassEntities entities = new ClassEntities())
@@ -20,7 +21,8 @@ namespace WebApplication4.Controllers
             }
         }
 
-        // GET: api/Class/5
+        [HttpGet]
+        [Route("api/Class/5")]
         public HttpResponseMessage Get(int id)
         {
             using (ClassEntities entities = new ClassEntities())
@@ -38,7 +40,8 @@ namespace WebApplication4.Controllers
             }
         }
 
-        // POST: api/Class
+        [HttpPost]
+        [Route("api/Class")]
         public HttpResponseMessage Post([FromBody] Class c)
         {
             try
@@ -60,7 +63,8 @@ namespace WebApplication4.Controllers
             }
         }
 
-        // PUT: api/Class/5
+        [HttpPut]
+        [Route("api/Class/5")]
         public HttpResponseMessage Put(int id, [FromBody] Class c)
         {
             try
@@ -90,7 +94,8 @@ namespace WebApplication4.Controllers
             }
         }
 
-        // DELETE: api/Class/5
+        [HttpDelete]
+        [Route("api/Class/5")]
         public HttpResponseMessage Delete(int id)
         {
             try
@@ -108,6 +113,29 @@ namespace WebApplication4.Controllers
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK);
                     }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Class/ClassAllocation")]
+        public HttpResponseMessage ClassAllocation([FromBody] Class c)
+        {
+            try
+            {
+                using (ClassEntities entities = new ClassEntities())
+                {
+                    entities.Class.Add(c);
+                    entities.SaveChanges();
+
+                    var message = Request.CreateResponse(HttpStatusCode.Created, c);
+                    message.Headers.Location = new Uri(Request.RequestUri + c.class_ID.ToString());
+                    return message;
 
                 }
             }

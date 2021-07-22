@@ -10,6 +10,8 @@ namespace WebApplication4.Controllers
 {
     public class SubjectController : ApiController
     {
+        [HttpGet]
+        [Route("api/Subject")]
         public IEnumerable<Subject> Get()
         {
             using (SubjectEntities entities = new SubjectEntities())
@@ -19,6 +21,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/Subject/5")]
         public HttpResponseMessage Get(int sub_id)
         {
             using (SubjectEntities entities = new SubjectEntities())
@@ -36,6 +40,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/Subject")]
         public HttpResponseMessage Post([FromBody] Subject sub)
         {
             try
@@ -57,6 +63,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/Subject/5")]
         public HttpResponseMessage Delete(int sub_id)
         {
             try
@@ -83,6 +91,8 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Subject/5")]
         public HttpResponseMessage Put(int sub_id, [FromBody] Subject s)
         {
             try
@@ -107,6 +117,29 @@ namespace WebApplication4.Controllers
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, entity);
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Subject/SubjectAllocation")]
+        public HttpResponseMessage SubjectAllocation([FromBody] Subject sub)
+        {
+            try
+            {
+                using (SubjectEntities entities = new SubjectEntities())
+                {
+                    entities.Subjects.Add(sub);
+                    entities.SaveChanges();
+
+                    var message = Request.CreateResponse(HttpStatusCode.Created, sub);
+                    message.Headers.Location = new Uri(Request.RequestUri + sub.subject_id.ToString());
+                    return message;
+
                 }
             }
             catch (Exception ex)

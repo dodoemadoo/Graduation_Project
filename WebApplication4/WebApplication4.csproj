@@ -186,14 +186,10 @@
     <Compile Include="AuthorizationServerProvider.cs" />
     <Compile Include="Controllers\ClassListController.cs" />
     <Compile Include="Controllers\GradeController.cs" />
-    <Compile Include="Controllers\ClassAllocationController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
-    <Compile Include="Controllers\TeacherToClassController.cs" />
-    <Compile Include="Controllers\TeacherToSubjectController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\BuildingController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
-    <Compile Include="Controllers\SubjectAllocationController.cs" />
     <Compile Include="Controllers\RoutesController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\MarkController.cs" />
@@ -201,7 +197,6 @@
     <Compile Include="Controllers\ComplainController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\BusController.cs" />
-    <Compile Include="Controllers\BusAllocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AttendenceController.cs" />
