@@ -10,32 +10,6 @@ namespace WebApplication4.Controllers
 {
     public class LoginController : ApiController
     {
-        [Authorize(Roles = "admin,student,teacher,parent")]
-        [HttpGet]
-        [Route("api/Login")]
-        public HttpResponseMessage Get()
-        {
-            using (UserEntities context = new UserEntities())
-            {
-                var data = context.Users
-                    .Join(
-                        context.Students,
-                        user_id => user_id.user_id,
-                        SUser_id => SUser_id.user_id,
-                        (user_id, SUser_id) => new
-                        {
-                            Studen_ID = SUser_id.student_ID,
-                            SName = SUser_id.student_name,
-                            S_user_id = user_id.user_id,
-                            password = user_id.password
-                        }
-                    ).Where(e => e.S_user_id == 1).ToList();
-
-                return Request.CreateResponse(HttpStatusCode.OK, data);
-            }
-        }
-
-
         [HttpPost]
         [Route("api/Login")]
         // Post: api/Login
@@ -48,7 +22,7 @@ namespace WebApplication4.Controllers
                 {
                     using (UserEntities context = new UserEntities())
                     {
-                        if (user.type == "Student")
+                        if (user.type == "student")
                         {
                             var data = context.Users
                         .Join(
@@ -65,7 +39,7 @@ namespace WebApplication4.Controllers
                         ).Where(e => e.S_user_id == login.user_id).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, data);
                         }
-                        else if (user.type == "Admin")
+                        else if (user.type == "admin")
                         {
                             var data = context.Users
                         .Join(
@@ -82,7 +56,7 @@ namespace WebApplication4.Controllers
                         ).Where(e => e.A_user_id == login.user_id).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, data);
                         }
-                        else if (user.type == "Teacher")
+                        else if (user.type == "teacher")
                         {
                             var data = context.Users
                         .Join(
@@ -124,16 +98,5 @@ namespace WebApplication4.Controllers
                 }
             }
         }
-
-        //This resource is For all types of role
-        [Authorize(Roles = "admin,student,teacher,parent")]
-        [HttpGet]
-        [Route("api/Login/resource1")]
-        public IHttpActionResult GetResource1()
-        {
-            var identity = (ClaimsIdentity)User.Identity;
-            return Ok("Hello: " +identity.Name);
-        }
-
     }
 }
