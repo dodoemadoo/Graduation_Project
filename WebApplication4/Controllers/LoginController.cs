@@ -36,7 +36,6 @@ namespace WebApplication4.Controllers
         }
 
 
-        [Authorize(Roles = "admin,student,teacher,parent")]
         [HttpPost]
         [Route("api/Login")]
         // Post: api/Login
@@ -127,13 +126,13 @@ namespace WebApplication4.Controllers
         }
 
         //This resource is For all types of role
-        [Authorize(Roles = "SuperAdmin, Admin, user")]
+        [Authorize(Roles = "admin,student,teacher,parent")]
         [HttpGet]
         [Route("api/Login/resource1")]
         public IHttpActionResult GetResource1()
         {
             var identity = (ClaimsIdentity)User.Identity;
-            return Ok("Hello: " + identity.Name);
+            return Ok("Hello: " +identity.Name);
         }
 
     }
