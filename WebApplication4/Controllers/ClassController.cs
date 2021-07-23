@@ -14,13 +14,12 @@ namespace WebApplication4.Controllers
         [Route("api/Class")]
         public HttpResponseMessage Get()
         {
-            using (ClassEntities entities = new ClassEntities())
-            {
                 using (ClassJoinEntities obj = new ClassJoinEntities())
                 {
                     var query = from c in obj.Classes
                                 join b in obj.Buildings on c.building_ID equals b.building_ID
                                 join g in obj.Grades on c.grade_id equals g.grade_id
+                                where c.class_ID == 1
                                 select new
                                 {
                                     c.class_ID,
@@ -32,20 +31,30 @@ namespace WebApplication4.Controllers
                                 };
                     return Request.CreateResponse(HttpStatusCode.OK, query.ToList());
                 }
-            }
         }
 
         [HttpGet]
         [Route("api/Class")]
         public HttpResponseMessage Get(int id)
         {
-            using (ClassEntities entities = new ClassEntities())
+            using (ClassJoinEntities obj = new ClassJoinEntities())
             {
-                var entity = entities.Class.FirstOrDefault(c => c.class_ID == id);
-
-                if (entity != null)
+                var query = from c in obj.Classes
+                            join b in obj.Buildings on c.building_ID equals b.building_ID
+                            join g in obj.Grades on c.grade_id equals g.grade_id
+                            where c.class_ID == id
+                            select new
+                            {
+                                c.class_ID,
+                                c.class_name,
+                                c.class_capacity,
+                                c.class_Type,
+                                b.building_Name,
+                                g.grade_Name
+                            };
+                if (query != null && query.ToList().Count != 0)
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, entity);
+                    return Request.CreateResponse(HttpStatusCode.OK, query.ToList());
                 }
                 else
                 {
@@ -150,7 +159,22 @@ namespace WebApplication4.Controllers
         [Route("api/Class/Get_Classes_for_Grade")]
         public HttpResponseMessage Get_Classes_for_Grade()
         {
-            using (ClassEntities entities = new ClassEntities())
+            using (ClassJoinEntities obj = new ClassJoinEntities())
+            {
+                var query = from c in obj.Classes
+                            join g in obj.Grades on c.grade_id equals g.grade_id
+                            select new
+                            {
+                                c.class_ID,
+                                c.class_name,
+                                c.class_capacity,
+                                c.class_Type,
+                                g.grade_id,
+                                g.grade_Name
+                            };
+                return Request.CreateResponse(HttpStatusCode.OK, query.ToList());
+            }
+            /*using (ClassEntities entities = new ClassEntities())
             {
                 IEnumerable<Class> list = entities.Class.ToList();
                 List<KeyValuePair<string, string>> list2 = new List<KeyValuePair<string, string>>();
@@ -174,7 +198,7 @@ namespace WebApplication4.Controllers
 
                 }
                 return Request.CreateResponse(HttpStatusCode.OK, list2.ToList());
-            }
+            }*/
         }
 
         [HttpGet]
@@ -203,8 +227,7 @@ namespace WebApplication4.Controllers
                 int capacity = studentCapacity - classCapacity;
                 if (capacity <= 0)
                 {
-                    bool check = true;
-                    return Request.CreateResponse(HttpStatusCode.OK, check);
+                    return Request.CreateResponse(HttpStatusCode.OK, 0);
                 }
                 else
                 {
