@@ -12,26 +12,20 @@ namespace WebApplication4.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Subject
+    public partial class Slot
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Subject()
+        public Slot()
         {
-            this.T_S = new HashSet<T_S>();
+            this.schedules = new HashSet<schedule>();
         }
     
-        public int subject_id { get; set; }
-        public string subject_Name { get; set; }
-        public string subject_code { get; set; }
-        public int classes_per_week { get; set; }
-        public double total_grade { get; set; }
-        public double year_wok { get; set; }
-        public double final_exam_grade { get; set; }
-        public int grade_ID { get; set; }
-        public string type { get; set; }
-        public string semester { get; set; }
+        public int slot_ID { get; set; }
+        public int slot_Name { get; set; }
+        public System.TimeSpan slot_FromTime { get; set; }
+        public System.TimeSpan slot_ToTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_S> T_S { get; set; }
+        public virtual ICollection<schedule> schedules { get; set; }
     }
 }

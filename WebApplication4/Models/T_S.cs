@@ -14,8 +14,19 @@ namespace WebApplication4.Models
     
     public partial class T_S
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public T_S()
+        {
+            this.schedules = new HashSet<schedule>();
+        }
+    
         public int T_S_ID { get; set; }
         public Nullable<int> subject_ID { get; set; }
         public Nullable<int> teacher_ID { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<schedule> schedules { get; set; }
+        public virtual Subject Subject { get; set; }
+        public virtual Teacher Teacher { get; set; }
     }
 }

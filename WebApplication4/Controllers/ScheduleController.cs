@@ -35,10 +35,35 @@ namespace WebApplication4.Controllers
         }
 
         [HttpGet]
-        [Route("api/Schedule/Validate")]
+        [Route("api/Schedule")]
         public HttpResponseMessage getClassSchedule(int class_ID)
         {
-            using (ClassEntities obj = new ClassEntities())
+            using (ScheduleJoinEntities obj = new ScheduleJoinEntities())
+            {
+                var query = from s in obj.schedules
+                            join slot in obj.Slots on s.slot_ID equals slot.slot_ID
+                            join Teacher_Subject in obj.T_S on s.teacher_subject_ID equals Teacher_Subject.T_S_ID
+                            join teacher in obj.Teachers on Teacher_Subject.teacher_ID equals teacher.teacher_id
+                            join subject in obj.Subjects on Teacher_Subject.subject_ID equals subject.subject_id
+                            where s.class_ID == class_ID
+                            select new
+                            {
+                                s.SS_ID,
+                                s.week_Day,
+                                slot.slot_ID,
+                                slot.slot_Name,
+                                slot.slot_FromTime,
+                                slot.slot_ToTime,
+                                Teacher_Subject.T_S_ID,
+                                teacher.teacher_id,
+                                teacher.teacher_Name,
+                                subject.subject_id,
+                                subject.subject_Name,
+                                s.semester
+                            };
+                return Request.CreateResponse(HttpStatusCode.OK, query.ToList());
+            }
+            /*using (ClassEntities obj = new ClassEntities())
             {
                 using (ScheduleEntities schedule = new ScheduleEntities())
                 {
@@ -54,7 +79,7 @@ namespace WebApplication4.Controllers
                         return Request.CreateResponse(HttpStatusCode.OK, class_Schedule);
                     }
                 }
-            }
+            }*/
         }
 
         [HttpPost]

@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ScheduleJoinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="SS_ID" />
+          </Key>
+          <Property Name="SS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="week_Day" Type="varchar" MaxLength="50" />
+          <Property Name="slot_ID" Type="int" />
+          <Property Name="class_ID" Type="int" />
+          <Property Name="teacher_subject_ID" Type="int" />
+          <Property Name="semester" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Slot">
+          <Key>
+            <PropertyRef Name="slot_ID" />
+          </Key>
+          <Property Name="slot_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slot_Name" Type="int" Nullable="false" />
+          <Property Name="slot_FromTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="slot_ToTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="subject_id" />
+          </Key>
+          <Property Name="subject_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subject_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="subject_code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="classes_per_week" Type="int" Nullable="false" />
+          <Property Name="total_grade" Type="float" Nullable="false" />
+          <Property Name="year_wok" Type="float" Nullable="false" />
+          <Property Name="final_exam_grade" Type="float" Nullable="false" />
+          <Property Name="grade_ID" Type="int" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="255" />
+          <Property Name="semester" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_S">
+          <Key>
+            <PropertyRef Name="T_S_ID" />
+          </Key>
+          <Property Name="T_S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subject_ID" Type="int" />
+          <Property Name="teacher_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="teacher_id" />
+          </Key>
+          <Property Name="teacher_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="teacher_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="teacher_Speciality" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="teacher_Gender" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="teacher_Age" Type="int" Nullable="false" />
+          <Property Name="natinal_ID" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__schedule__slot_I__52593CB8">
+          <End Role="Slot" Type="Self.Slot" Multiplicity="0..1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Slot">
+              <PropertyRef Name="slot_ID" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="slot_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__schedule__teache__5070F446">
+          <End Role="T_S" Type="Self.T_S" Multiplicity="0..1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_S">
+              <PropertyRef Name="T_S_ID" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="teacher_subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_S__subject_ID__48CFD27E">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="T_S" Type="Self.T_S" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="subject_id" />
+            </Principal>
+            <Dependent Role="T_S">
+              <PropertyRef Name="subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_S__teacher_ID__49C3F6B7">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+          <End Role="T_S" Type="Self.T_S" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="teacher_id" />
+            </Principal>
+            <Dependent Role="T_S">
+              <PropertyRef Name="teacher_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScheduleJoinModelStoreContainer">
+          <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slot" EntityType="Self.Slot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_S" EntityType="Self.T_S" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__schedule__slot_I__52593CB8" Association="Self.FK__schedule__slot_I__52593CB8">
+            <End Role="Slot" EntitySet="Slot" />
+            <End Role="schedule" EntitySet="schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__schedule__teache__5070F446" Association="Self.FK__schedule__teache__5070F446">
+            <End Role="T_S" EntitySet="T_S" />
+            <End Role="schedule" EntitySet="schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_S__subject_ID__48CFD27E" Association="Self.FK__T_S__subject_ID__48CFD27E">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="T_S" EntitySet="T_S" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_S__teacher_ID__49C3F6B7" Association="Self.FK__T_S__teacher_ID__49C3F6B7">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="T_S" EntitySet="T_S" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScheduleJoinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="SS_ID" />
+          </Key>
+          <Property Name="SS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="week_Day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="slot_ID" Type="Int32" />
+          <Property Name="class_ID" Type="Int32" />
+          <Property Name="teacher_subject_ID" Type="Int32" />
+          <Property Name="semester" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Slot" Relationship="Self.FK__schedule__slot_I__52593CB8" FromRole="schedule" ToRole="Slot" />
+          <NavigationProperty Name="T_S" Relationship="Self.FK__schedule__teache__5070F446" FromRole="schedule" ToRole="T_S" />
+        </EntityType>
+        <EntityType Name="Slot">
+          <Key>
+            <PropertyRef Name="slot_ID" />
+          </Key>
+          <Property Name="slot_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slot_Name" Type="Int32" Nullable="false" />
+          <Property Name="slot_FromTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="slot_ToTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="schedules" Relationship="Self.FK__schedule__slot_I__52593CB8" FromRole="Slot" ToRole="schedule" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="subject_id" />
+          </Key>
+          <Property Name="subject_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subject_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subject_code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="classes_per_week" Type="Int32" Nullable="false" />
+          <Property Name="total_grade" Type="Double" Nullable="false" />
+          <Property Name="year_wok" Type="Double" Nullable="false" />
+          <Property Name="final_exam_grade" Type="Double" Nullable="false" />
+          <Property Name="grade_ID" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="semester" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="T_S" Relationship="Self.FK__T_S__subject_ID__48CFD27E" FromRole="Subject" ToRole="T_S" />
+        </EntityType>
+        <EntityType Name="T_S">
+          <Key>
+            <PropertyRef Name="T_S_ID" />
+          </Key>
+          <Property Name="T_S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subject_ID" Type="Int32" />
+          <Property Name="teacher_ID" Type="Int32" />
+          <NavigationProperty Name="schedules" Relationship="Self.FK__schedule__teache__5070F446" FromRole="T_S" ToRole="schedule" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__T_S__subject_ID__48CFD27E" FromRole="T_S" ToRole="Subject" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__T_S__teacher_ID__49C3F6B7" FromRole="T_S" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="teacher_id" />
+          </Key>
+          <Property Name="teacher_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="teacher_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teacher_Speciality" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teacher_Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teacher_Age" Type="Int32" Nullable="false" />
+          <Property Name="natinal_ID" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="T_S" Relationship="Self.FK__T_S__teacher_ID__49C3F6B7" FromRole="Teacher" ToRole="T_S" />
+        </EntityType>
+        <Association Name="FK__schedule__slot_I__52593CB8">
+          <End Role="Slot" Type="Self.Slot" Multiplicity="0..1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Slot">
+              <PropertyRef Name="slot_ID" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="slot_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__schedule__teache__5070F446">
+          <End Role="T_S" Type="Self.T_S" Multiplicity="0..1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_S">
+              <PropertyRef Name="T_S_ID" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="teacher_subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_S__subject_ID__48CFD27E">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="T_S" Type="Self.T_S" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="subject_id" />
+            </Principal>
+            <Dependent Role="T_S">
+              <PropertyRef Name="subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_S__teacher_ID__49C3F6B7">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+          <End Role="T_S" Type="Self.T_S" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="teacher_id" />
+            </Principal>
+            <Dependent Role="T_S">
+              <PropertyRef Name="teacher_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScheduleJoinEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="schedules" EntityType="Self.schedule" />
+          <EntitySet Name="Slots" EntityType="Self.Slot" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <EntitySet Name="T_S" EntityType="Self.T_S" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <AssociationSet Name="FK__schedule__slot_I__52593CB8" Association="Self.FK__schedule__slot_I__52593CB8">
+            <End Role="Slot" EntitySet="Slots" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK__schedule__teache__5070F446" Association="Self.FK__schedule__teache__5070F446">
+            <End Role="T_S" EntitySet="T_S" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_S__subject_ID__48CFD27E" Association="Self.FK__T_S__subject_ID__48CFD27E">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="T_S" EntitySet="T_S" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_S__teacher_ID__49C3F6B7" Association="Self.FK__T_S__teacher_ID__49C3F6B7">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="T_S" EntitySet="T_S" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScheduleJoinModelStoreContainer" CdmEntityContainer="ScheduleJoinEntities">
+          <EntitySetMapping Name="schedules">
+            <EntityTypeMapping TypeName="ScheduleJoinModel.schedule">
+              <MappingFragment StoreEntitySet="schedule">
+                <ScalarProperty Name="SS_ID" ColumnName="SS_ID" />
+                <ScalarProperty Name="week_Day" ColumnName="week_Day" />
+                <ScalarProperty Name="slot_ID" ColumnName="slot_ID" />
+                <ScalarProperty Name="class_ID" ColumnName="class_ID" />
+                <ScalarProperty Name="teacher_subject_ID" ColumnName="teacher_subject_ID" />
+                <ScalarProperty Name="semester" ColumnName="semester" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slots">
+            <EntityTypeMapping TypeName="ScheduleJoinModel.Slot">
+              <MappingFragment StoreEntitySet="Slot">
+                <ScalarProperty Name="slot_ID" ColumnName="slot_ID" />
+                <ScalarProperty Name="slot_Name" ColumnName="slot_Name" />
+                <ScalarProperty Name="slot_FromTime" ColumnName="slot_FromTime" />
+                <ScalarProperty Name="slot_ToTime" ColumnName="slot_ToTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="ScheduleJoinModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="subject_id" ColumnName="subject_id" />
+                <ScalarProperty Name="subject_Name" ColumnName="subject_Name" />
+                <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+                <ScalarProperty Name="classes_per_week" ColumnName="classes_per_week" />
+                <ScalarProperty Name="total_grade" ColumnName="total_grade" />
+                <ScalarProperty Name="year_wok" ColumnName="year_wok" />
+                <ScalarProperty Name="final_exam_grade" ColumnName="final_exam_grade" />
+                <ScalarProperty Name="grade_ID" ColumnName="grade_ID" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="semester" ColumnName="semester" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_S">
+            <EntityTypeMapping TypeName="ScheduleJoinModel.T_S">
+              <MappingFragment StoreEntitySet="T_S">
+                <ScalarProperty Name="T_S_ID" ColumnName="T_S_ID" />
+                <ScalarProperty Name="subject_ID" ColumnName="subject_ID" />
+                <ScalarProperty Name="teacher_ID" ColumnName="teacher_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="ScheduleJoinModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
+                <ScalarProperty Name="teacher_Name" ColumnName="teacher_Name" />
+                <ScalarProperty Name="teacher_Speciality" ColumnName="teacher_Speciality" />
+                <ScalarProperty Name="teacher_Gender" ColumnName="teacher_Gender" />
+                <ScalarProperty Name="teacher_Age" ColumnName="teacher_Age" />
+                <ScalarProperty Name="natinal_ID" ColumnName="natinal_ID" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

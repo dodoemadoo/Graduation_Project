@@ -20,5 +20,8 @@ namespace WebApplication4.Models
         public Nullable<int> class_ID { get; set; }
         public Nullable<int> teacher_subject_ID { get; set; }
         public string semester { get; set; }
+    
+        public virtual Slot Slot { get; set; }
+        public virtual T_S T_S { get; set; }
     }
 }

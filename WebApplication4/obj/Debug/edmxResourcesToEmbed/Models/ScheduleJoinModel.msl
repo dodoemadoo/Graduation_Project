@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ScheduleJoinModelStoreContainer" CdmEntityContainer="ScheduleJoinEntities">
+    <EntitySetMapping Name="schedules">
+      <EntityTypeMapping TypeName="ScheduleJoinModel.schedule">
+        <MappingFragment StoreEntitySet="schedule">
+          <ScalarProperty Name="SS_ID" ColumnName="SS_ID" />
+          <ScalarProperty Name="week_Day" ColumnName="week_Day" />
+          <ScalarProperty Name="slot_ID" ColumnName="slot_ID" />
+          <ScalarProperty Name="class_ID" ColumnName="class_ID" />
+          <ScalarProperty Name="teacher_subject_ID" ColumnName="teacher_subject_ID" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Slots">
+      <EntityTypeMapping TypeName="ScheduleJoinModel.Slot">
+        <MappingFragment StoreEntitySet="Slot">
+          <ScalarProperty Name="slot_ID" ColumnName="slot_ID" />
+          <ScalarProperty Name="slot_Name" ColumnName="slot_Name" />
+          <ScalarProperty Name="slot_FromTime" ColumnName="slot_FromTime" />
+          <ScalarProperty Name="slot_ToTime" ColumnName="slot_ToTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="ScheduleJoinModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="subject_id" ColumnName="subject_id" />
+          <ScalarProperty Name="subject_Name" ColumnName="subject_Name" />
+          <ScalarProperty Name="subject_code" ColumnName="subject_code" />
+          <ScalarProperty Name="classes_per_week" ColumnName="classes_per_week" />
+          <ScalarProperty Name="total_grade" ColumnName="total_grade" />
+          <ScalarProperty Name="year_wok" ColumnName="year_wok" />
+          <ScalarProperty Name="final_exam_grade" ColumnName="final_exam_grade" />
+          <ScalarProperty Name="grade_ID" ColumnName="grade_ID" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_S">
+      <EntityTypeMapping TypeName="ScheduleJoinModel.T_S">
+        <MappingFragment StoreEntitySet="T_S">
+          <ScalarProperty Name="T_S_ID" ColumnName="T_S_ID" />
+          <ScalarProperty Name="subject_ID" ColumnName="subject_ID" />
+          <ScalarProperty Name="teacher_ID" ColumnName="teacher_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="ScheduleJoinModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
+          <ScalarProperty Name="teacher_Name" ColumnName="teacher_Name" />
+          <ScalarProperty Name="teacher_Speciality" ColumnName="teacher_Speciality" />
+          <ScalarProperty Name="teacher_Gender" ColumnName="teacher_Gender" />
+          <ScalarProperty Name="teacher_Age" ColumnName="teacher_Age" />
+          <ScalarProperty Name="natinal_ID" ColumnName="natinal_ID" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

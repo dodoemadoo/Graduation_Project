@@ -423,7 +423,22 @@
       <DependentUpon>RouteModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\schedule.cs">
-      <DependentUpon>ScheduleModel.tt</DependentUpon>
+      <DependentUpon>ScheduleJoinModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScheduleJoinModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScheduleJoinModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScheduleJoinModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScheduleJoinModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScheduleJoinModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScheduleJoinModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ScheduleModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -439,6 +454,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScheduleModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Slot.cs">
+      <DependentUpon>ScheduleJoinModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
@@ -459,7 +477,7 @@
       <DependentUpon>StudentModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Subject.cs">
-      <DependentUpon>SubjectModel.tt</DependentUpon>
+      <DependentUpon>ScheduleJoinModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubjectModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -477,7 +495,7 @@
       <DependentUpon>SubjectModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Teacher.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
+      <DependentUpon>ScheduleJoinModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TeacherModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -495,7 +513,7 @@
       <DependentUpon>TeacherModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\T_S.cs">
-      <DependentUpon>T_SModel.tt</DependentUpon>
+      <DependentUpon>ScheduleJoinModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\T_SModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -662,6 +680,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RouteModel.edmx</DependentUpon>
       <LastGenOutput>RouteModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ScheduleJoinModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ScheduleJoinModel.edmx</DependentUpon>
+      <LastGenOutput>ScheduleJoinModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ScheduleJoinModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ScheduleJoinModel.edmx</DependentUpon>
+      <LastGenOutput>ScheduleJoinModel.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ScheduleModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -869,6 +897,13 @@
     </EntityDeploy>
     <Content Include="Models\ClassJoinModel.edmx.diagram">
       <DependentUpon>ClassJoinModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ScheduleJoinModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ScheduleJoinModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ScheduleJoinModel.edmx.diagram">
+      <DependentUpon>ScheduleJoinModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

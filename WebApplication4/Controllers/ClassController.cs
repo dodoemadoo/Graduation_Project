@@ -19,7 +19,6 @@ namespace WebApplication4.Controllers
                     var query = from c in obj.Classes
                                 join b in obj.Buildings on c.building_ID equals b.building_ID
                                 join g in obj.Grades on c.grade_id equals g.grade_id
-                                where c.class_ID == 1
                                 select new
                                 {
                                     c.class_ID,
