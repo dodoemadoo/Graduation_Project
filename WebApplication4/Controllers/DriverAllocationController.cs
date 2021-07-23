@@ -154,10 +154,6 @@ namespace WebApplication4.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
-
-
-
-
     }
 
 }
