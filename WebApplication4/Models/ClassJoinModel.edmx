@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ClassJoinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ClassJoinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Building">
           <Key>
             <PropertyRef Name="building_ID" />
@@ -32,7 +32,7 @@
           <Property Name="grade_Capcity" Type="int" Nullable="false" />
           <Property Name="grade_Name" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Class__building___3A81B327">
+        <Association Name="FK__Class__building___36B12243">
           <End Role="Building" Type="Self.Building" Multiplicity="1" />
           <End Role="Class" Type="Self.Class" Multiplicity="*" />
           <ReferentialConstraint>
@@ -44,7 +44,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Class__grade_id__3B75D760">
+        <Association Name="FK__Class__grade_id__37A5467C">
           <End Role="Grade" Type="Self.Grade" Multiplicity="0..1" />
           <End Role="Class" Type="Self.Class" Multiplicity="*" />
           <ReferentialConstraint>
@@ -60,17 +60,16 @@
           <EntitySet Name="Building" EntityType="Self.Building" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Class__building___3A81B327" Association="Self.FK__Class__building___3A81B327">
+          <AssociationSet Name="FK__Class__building___36B12243" Association="Self.FK__Class__building___36B12243">
             <End Role="Building" EntitySet="Building" />
             <End Role="Class" EntitySet="Class" />
           </AssociationSet>
-          <AssociationSet Name="FK__Class__grade_id__3B75D760" Association="Self.FK__Class__grade_id__3B75D760">
+          <AssociationSet Name="FK__Class__grade_id__37A5467C" Association="Self.FK__Class__grade_id__37A5467C">
             <End Role="Grade" EntitySet="Grade" />
             <End Role="Class" EntitySet="Class" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClassJoinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

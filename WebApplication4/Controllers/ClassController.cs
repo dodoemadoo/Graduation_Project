@@ -199,41 +199,5 @@ namespace WebApplication4.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, list2.ToList());
             }*/
         }
-
-        [HttpGet]
-        [Route("api/Class/Get_capacity")]
-        public HttpResponseMessage Get_capacity([FromBody] int gradeID)
-        {
-            using (ClassEntities entities = new ClassEntities())
-            {
-                int studentCapacity = 0, classCapacity = 0;
-                using (StudentEntities studentEntities = new StudentEntities())
-                {
-                    IEnumerable<Student> list = studentEntities.Students.Where(s => s.grade_ID == gradeID).ToList();
-                    if (list != null)
-                    {
-                        studentCapacity = list.Count();
-                    }
-                }
-                IEnumerable<Class> list2 = entities.Class.Where(c => c.grade_id == gradeID).ToList();
-                if (list2 != null)
-                {
-                    for (int i = 0; i < list2.Count(); i++)
-                    {
-                        classCapacity += list2.ElementAt(i).class_capacity;
-                    }
-                }
-                int capacity = studentCapacity - classCapacity;
-                if (capacity <= 0)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, 0);
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, capacity);
-                }
-            }
-
-        }
     }
 }

@@ -20,8 +20,5 @@ namespace WebApplication4.Models
         public string class_Type { get; set; }
         public int building_ID { get; set; }
         public Nullable<int> grade_id { get; set; }
-    
-        public virtual Building Building { get; set; }
-        public virtual Grade Grade { get; set; }
     }
 }

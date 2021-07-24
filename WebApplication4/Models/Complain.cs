@@ -18,6 +18,6 @@ namespace WebApplication4.Models
         public string complain_Info { get; set; }
         public Nullable<int> administrator_ID { get; set; }
         public int Status { get; set; }
-        public Nullable<int> student_ID { get; set; }
+        public int student_ID { get; set; }
     }
 }

@@ -85,7 +85,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Student__parent___44FF419A">
+  <Association Name="FK__Student__parent___412EB0B6">
     <End Role="Parent" Type="Self.Parent" Multiplicity="1" />
     <End Role="Student" Type="Self.Student" Multiplicity="*" />
     <ReferentialConstraint>
@@ -97,7 +97,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Student__user_id__440B1D61">
+  <Association Name="FK__Student__user_id__403A8C7D">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Student" Type="Self.Student" Multiplicity="*" />
     <ReferentialConstraint>
@@ -135,11 +135,11 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Parent" EntitySet="Parent" />
     </AssociationSet>
-    <AssociationSet Name="FK__Student__parent___44FF419A" Association="Self.FK__Student__parent___44FF419A">
+    <AssociationSet Name="FK__Student__parent___412EB0B6" Association="Self.FK__Student__parent___412EB0B6">
       <End Role="Parent" EntitySet="Parent" />
       <End Role="Student" EntitySet="Student" />
     </AssociationSet>
-    <AssociationSet Name="FK__Student__user_id__440B1D61" Association="Self.FK__Student__user_id__440B1D61">
+    <AssociationSet Name="FK__Student__user_id__403A8C7D" Association="Self.FK__Student__user_id__403A8C7D">
       <End Role="Users" EntitySet="Users" />
       <End Role="Student" EntitySet="Student" />
     </AssociationSet>

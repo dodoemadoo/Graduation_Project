@@ -279,7 +279,7 @@
       <DependentUpon>BusRouteModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Class.cs">
-      <DependentUpon>ClassJoinModel.tt</DependentUpon>
+      <DependentUpon>ClassModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ClassJoinModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -348,7 +348,7 @@
       <DependentUpon>DriverModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Grade.cs">
-      <DependentUpon>ClassJoinModel.tt</DependentUpon>
+      <DependentUpon>GradeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GradeModel.Context.cs">
       <AutoGen>True</AutoGen>

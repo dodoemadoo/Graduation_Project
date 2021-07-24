@@ -11,7 +11,7 @@ namespace WebApplication4.Controllers
     public class ComplainController : ApiController
     {
         [HttpGet]
-        [Route("api/Subject")]
+        [Route("api/Complain")]
         public HttpResponseMessage Get()
         {
             using (ComplainEntities entities = new ComplainEntities())
@@ -22,7 +22,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpGet]
-        [Route("api/Subject")]
+        [Route("api/Complain")]
         public HttpResponseMessage Get(int comp_id)
         {
             using (ComplainEntities entities = new ComplainEntities())
@@ -41,7 +41,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpPost]
-        [Route("api/Subject")]
+        [Route("api/Complain")]
         public HttpResponseMessage Post([FromBody] Complain comp)
         {
             try
@@ -64,7 +64,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpPut]
-        [Route("api/Subject")]
+        [Route("api/Complain")]
         public HttpResponseMessage Put(int comp_id, [FromBody] Complain comp)
         {
             try
@@ -94,7 +94,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpDelete]
-        [Route("api/Subject")]
+        [Route("api/Complain")]
         public HttpResponseMessage Delete(int comp_id)
         {
             try

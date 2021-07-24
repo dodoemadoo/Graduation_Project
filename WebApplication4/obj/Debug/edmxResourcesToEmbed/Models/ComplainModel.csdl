@@ -8,7 +8,7 @@
     <Property Name="complain_Info" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="administrator_ID" Type="Int32" />
     <Property Name="Status" Type="Int32" Nullable="false" />
-    <Property Name="student_ID" Type="Int32" />
+    <Property Name="student_ID" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityContainer Name="ComplainEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Complains" EntityType="Self.Complain" />

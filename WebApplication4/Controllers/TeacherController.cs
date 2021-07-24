@@ -131,15 +131,25 @@ namespace WebApplication4.Controllers
             {
                 using (ScheduleEntities entities = new ScheduleEntities())
                 {
-                        schedule entity = new schedule();
-                        entity.class_ID = obj.class_ID;
-                        entity.teacher_subject_ID = obj.teacher_subject_ID;
-                        entities.schedules.Add(entity);
-                        entities.SaveChanges();
-
-                        var message = Request.CreateResponse(HttpStatusCode.Created, entity);
-                        message.Headers.Location = new Uri(Request.RequestUri + entity.SS_ID.ToString());
-                        return message;
+                    using (ScheduleJoinEntities temp = new ScheduleJoinEntities())
+                    {
+                        var query = from s in temp.Subjects
+                                    join Teacher_Subject in temp.T_S on s.subject_id equals Teacher_Subject.subject_ID
+                                    where Teacher_Subject.T_S_ID == obj.teacher_subject_ID
+                                    select new
+                                    {
+                                        s.classes_per_week
+                                    };
+                        for (int i = 0; i < query.ToList().ElementAt(0).classes_per_week; i++)
+                        {
+                            schedule entity = new schedule();
+                            entity.class_ID = obj.class_ID;
+                            entity.teacher_subject_ID = obj.teacher_subject_ID;
+                            entities.schedules.Add(entity);
+                            entities.SaveChanges();
+                        }
+                        return Request.CreateResponse(HttpStatusCode.Created);
+                    }
 
                 }
             }

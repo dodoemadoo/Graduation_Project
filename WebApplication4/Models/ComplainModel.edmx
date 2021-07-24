@@ -4,22 +4,21 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ComplainModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ComplainModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Complain">
           <Key>
             <PropertyRef Name="complain_id" />
           </Key>
           <Property Name="complain_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="complain_Info" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="student_ID" Type="int" Nullable="false" />
           <Property Name="administrator_ID" Type="int" />
           <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="student_ID" Type="int" />
         </EntityType>
         <EntityContainer Name="ComplainModelStoreContainer">
           <EntitySet Name="Complain" EntityType="Self.Complain" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ComplainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -31,7 +30,7 @@
           <Property Name="complain_Info" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="administrator_ID" Type="Int32" />
           <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="student_ID" Type="Int32" />
+          <Property Name="student_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ComplainEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Complains" EntityType="Self.Complain" />

@@ -19,7 +19,7 @@ namespace WebApplication4.Controllers
 
                 using (UserEntities studentEntity = new UserEntities())
                 {
-                    if (list != null && list.Count != 0)
+                    if (list.Count != 0 &&  list != null)
                     {
 
                         if (isAlphabetical)
@@ -57,7 +57,7 @@ namespace WebApplication4.Controllers
 
                     }
                     else
-                        return null;
+                        return list;
                 }
             }
 
@@ -89,7 +89,6 @@ namespace WebApplication4.Controllers
                             }
 
                             var MarkList = MarkEntity.mark.Where(s => SubjectIDs.Contains((int)s.subject_ID)).ToList();
-                            //  IEnumerable<int> StudentIDs = new List<int>();
                             List<List<Student>> StudentsHaveSecondLanguage = new List<List<Student>>(SubjectIDs.Count());
                             List<Student> StudentList = StudentEntity.Students.ToList();
                             for (int i = 0; i < SubjectIDs.Count(); i++)
@@ -108,15 +107,11 @@ namespace WebApplication4.Controllers
                                                 break;
                                             }
                                         }
-                                        //Student student = StudentEntity.Students.FirstOrDefault(s => s.student_ID == MarkList.ElementAt(j).student_ID);
                                         students.Add(student);
-                                        //break;
                                     }
                                 }
                                 StudentsHaveSecondLanguage.Add(students);
                             }
-
-                            // List<List<Student>> list = GetByGender(StudentsHaveSecondLanguage,1);
 
                             return StudentsHaveSecondLanguage;
                         }
@@ -200,33 +195,38 @@ namespace WebApplication4.Controllers
                         var byAlphabetical = GetAlphabetically(isAlphabetical, byGender, _grade.grade_id);
                         if (isAlphabetical && !isBySecondlanguage && !isByGender)
                         {
-                            using (StudentEntities studentEntity = new StudentEntities())
+                            if (Get_capacity(_grade.grade_id).StatusCode == HttpStatusCode.OK)
                             {
-                                List<Student> studentlist = studentEntity.Students.Where(s => s.grade_ID == _grade.grade_id).ToList();
-                                studentlist.OrderBy(s => s.student_name);
-
-                                List<KeyValuePair<Class, List<Student>>> assignedClasses = new List<KeyValuePair<Class, List<Student>>>();
-                                while(studentlist.Count != 0)
+                                using (StudentEntities studentEntity = new StudentEntities())
                                 {
-                                    Class c = classes.ElementAt(0);
-                                    for (int k = 1; k < classes.Count(); k++)
+                                    List<Student> studentlist = studentEntity.Students.Where(s => s.grade_ID == _grade.grade_id).ToList();
+                                    studentlist.OrderBy(s => s.student_name);
+
+                                    List<KeyValuePair<Class, List<Student>>> assignedClasses = new List<KeyValuePair<Class, List<Student>>>();
+                                    while (studentlist.Count != 0)
                                     {
-                                        if (classes.ElementAt(k).class_capacity > c.class_capacity)
+                                        Class c = classes.ElementAt(0);
+                                        for (int k = 1; k < classes.Count(); k++)
                                         {
-                                            c = classes.ElementAt(k);
+                                            if (classes.ElementAt(k).class_capacity > c.class_capacity)
+                                            {
+                                                c = classes.ElementAt(k);
+                                            }
                                         }
+                                        List<Student> currStudents = studentlist.GetRange(0, Math.Min(c.class_capacity, studentlist.Count));
+                                        assignedClasses.Add(new KeyValuePair<Class, List<Student>>(c, currStudents));
+                                        studentlist.RemoveRange(0, Math.Min(c.class_capacity, studentlist.Count));
+                                        //students.RemoveRange(0, c.class_capacity);
+                                        classes.Remove(c);
+
+                                        //return Request.CreateResponse(HttpStatusCode.OK,studentlist);
                                     }
-                                    List<Student> currStudents = studentlist.GetRange(0, c.class_capacity);
-                                    assignedClasses.Add(new KeyValuePair<Class, List<Student>>(c, currStudents));
-                                    studentlist.RemoveRange(0, c.class_capacity);
-                                    //students.RemoveRange(0, c.class_capacity);
-                                    classes.Remove(c);
-                                    
-                                    //return Request.CreateResponse(HttpStatusCode.OK,studentlist);
+                                    InsertStudentsClass(assignedClasses);
+                                    return Request.CreateResponse(HttpStatusCode.OK, assignedClasses);
                                 }
-                                InsertStudentsClass(assignedClasses);
-                                return Request.CreateResponse(HttpStatusCode.OK, assignedClasses);
                             }
+                            else
+                                return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of classes dosen't match your criteria");
                         }
                         else
                         {
@@ -322,6 +322,42 @@ namespace WebApplication4.Controllers
                     }
                 }
             }
+        }
+
+        [HttpGet]
+        [Route("api/ClassList/Get_capacity")]
+        public HttpResponseMessage Get_capacity([FromBody] int gradeID)
+        {
+            using (ClassEntities entities = new ClassEntities())
+            {
+                int studentCapacity = 0, classCapacity = 0;
+                using (StudentEntities studentEntities = new StudentEntities())
+                {
+                    IEnumerable<Student> list = studentEntities.Students.Where(s => s.grade_ID == gradeID).ToList();
+                    if (list != null)
+                    {
+                        studentCapacity = list.Count();
+                    }
+                }
+                IEnumerable<Class> list2 = entities.Class.Where(c => c.grade_id == gradeID).ToList();
+                if (list2 != null)
+                {
+                    for (int i = 0; i < list2.Count(); i++)
+                    {
+                        classCapacity += list2.ElementAt(i).class_capacity;
+                    }
+                }
+                int capacity = studentCapacity - classCapacity;
+                if (capacity <= 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, 0);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, capacity);
+                }
+            }
+
         }
     }
 } 
