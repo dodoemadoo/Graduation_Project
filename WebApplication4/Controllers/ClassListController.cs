@@ -132,7 +132,7 @@ namespace WebApplication4.Controllers
                 {
                     using (StudentEntities studentEntity = new StudentEntities())
                     {
-                        if (students != null && students.Count!=0)
+                        if (students != null)
                         {
                             List<List<Student>> list = new List<List<Student>>();
                             for (int i = 0; i < students.Count(); i++)
@@ -158,9 +158,9 @@ namespace WebApplication4.Controllers
                         else
                         {
                             List<Student> males = new List<Student>();
-                            males = studentEntity.Students.Where(s => s.student_Gender == "male" && s.grade_ID == _grade).ToList();
+                            males = studentEntity.Students.Where(s => s.student_Gender == " male" && s.grade_ID == _grade).ToList();
                             List<Student> females = new List<Student>();
-                            females = studentEntity.Students.Where(s => s.student_Gender == "female" && s.grade_ID == _grade).ToList();
+                            females = studentEntity.Students.Where(s => s.student_Gender == " female" && s.grade_ID == _grade).ToList();
 
                             List<List<Student>> list = new List<List<Student>>();
                             
