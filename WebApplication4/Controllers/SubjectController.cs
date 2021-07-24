@@ -124,5 +124,16 @@ namespace WebApplication4.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
+        [HttpPut]
+        [Route("api/Subject/GetGradeSubjects")]
+        public HttpResponseMessage GetGradeSubjects(int gradeID)
+        {
+            using (SubjectEntities entities = new SubjectEntities())
+            {
+                IEnumerable<Subject> entity = entities.Subjects.Where(S => S.grade_ID == gradeID).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, entity.ToList());
+            }
+        }
     }
 }

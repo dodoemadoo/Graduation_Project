@@ -186,7 +186,9 @@
     <Compile Include="AuthorizationServerProvider.cs" />
     <Compile Include="Controllers\ClassListController.cs" />
     <Compile Include="Controllers\GradeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\BuildingController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
