@@ -190,9 +190,6 @@ namespace WebApplication4.Controllers
                     using (ClassEntities obj = new ClassEntities())
                     {
                         var classes = obj.Class.Where(c => c.grade_id == _grade.grade_id).ToList();
-                        var bySecondLanguage = GetBySecondLanguage(isBySecondlanguage);
-                        var byGender = GetByGender(bySecondLanguage, _grade.grade_id, isByGender);
-                        var byAlphabetical = GetAlphabetically(isAlphabetical, byGender, _grade.grade_id);
                         if (isAlphabetical && !isBySecondlanguage && !isByGender)
                         {
                             if (Get_capacity(_grade.grade_id).StatusCode == HttpStatusCode.OK)
@@ -230,6 +227,9 @@ namespace WebApplication4.Controllers
                         }
                         else
                         {
+                            var bySecondLanguage = GetBySecondLanguage(isBySecondlanguage);
+                            var byGender = GetByGender(bySecondLanguage, _grade.grade_id, isByGender);
+                            var byAlphabetical = GetAlphabetically(isAlphabetical, byGender, _grade.grade_id);
                             if (classes.Count < byAlphabetical.Count)
                             {
                                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of classes dosen't match your criteria");
@@ -262,7 +262,7 @@ namespace WebApplication4.Controllers
                                         {
                                             if (temp.ElementAt(k).class_capacity < c.class_capacity)
                                             {
-                                                c = temp.ElementAt(i);
+                                                c = temp.ElementAt(k);
                                             }
                                         }
                                         currClass = c;
