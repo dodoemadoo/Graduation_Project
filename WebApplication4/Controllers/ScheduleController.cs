@@ -88,7 +88,7 @@ namespace WebApplication4.Controllers
         {
             using (ScheduleEntities schedule = new ScheduleEntities())
             {
-                var entity = schedule.schedules.FirstOrDefault(s => s.teacher_subject_ID == slot.teacher_subject_ID && s.class_ID == slot.class_ID && s.week_Day != null );
+                var entity = schedule.schedules.FirstOrDefault(s => s.teacher_subject_ID == slot.teacher_subject_ID && s.class_ID == slot.class_ID && s.week_Day == null );
                 if (entity == null)
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "You have insereted this subject before");
