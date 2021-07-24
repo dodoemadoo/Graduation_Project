@@ -88,19 +88,41 @@ namespace WebApplication4.Controllers
         {
             using (ScheduleEntities schedule = new ScheduleEntities())
             {
-               if(ValidateSlot(slot).StatusCode == HttpStatusCode.OK)
-               {
-                    schedule.schedules.Add(slot);
-                    schedule.SaveChanges();
-
-                    var message = Request.CreateResponse(HttpStatusCode.OK, slot);
-
-                    message.Headers.Location = new Uri(Request.RequestUri + slot.slot_ID.ToString());
-                    return message;
+                var entity = schedule.schedules.FirstOrDefault(s => s.teacher_subject_ID == slot.teacher_subject_ID && s.class_ID == slot.class_ID && s.week_Day != null );
+                if (entity == null)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "You have insereted this subject before");
                 }
-               else
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Cannot create this slot");
+                else
+                {
+                    entity.week_Day = slot.week_Day;
+                    entity.slot_ID = slot.slot_ID;
+                    entity.class_ID = slot.class_ID;
+                    entity.teacher_subject_ID = slot.teacher_subject_ID;
+                    entity.semester = slot.semester;
+                    if (ValidateSlot(entity).StatusCode == HttpStatusCode.OK)
+                    {
+                        schedule.SaveChanges();
+
+                        return Request.CreateResponse(HttpStatusCode.OK, entity);
+                    }
+                    else
+                        return Request.CreateResponse(HttpStatusCode.BadRequest, "Cannot create this slot");
+                }
+                /*if(ValidateSlot(slot).StatusCode == HttpStatusCode.OK)
+                {
+                     schedule.schedules.Add(slot);
+                     schedule.SaveChanges();
+
+                     var message = Request.CreateResponse(HttpStatusCode.OK, slot);
+
+                     message.Headers.Location = new Uri(Request.RequestUri + slot.slot_ID.ToString());
+                     return message;
+                 }
+                else
+                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Cannot create this slot");*/
             }
+
         }
 
         [HttpPut]
