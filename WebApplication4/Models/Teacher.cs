@@ -14,12 +14,6 @@ namespace WebApplication4.Models
     
     public partial class Teacher
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Teacher()
-        {
-            this.T_S = new HashSet<T_S>();
-        }
-    
         public int teacher_id { get; set; }
         public string teacher_Name { get; set; }
         public string teacher_Speciality { get; set; }
@@ -28,7 +22,6 @@ namespace WebApplication4.Models
         public int natinal_ID { get; set; }
         public int user_id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_S> T_S { get; set; }
+        public virtual User User { get; set; }
     }
 }

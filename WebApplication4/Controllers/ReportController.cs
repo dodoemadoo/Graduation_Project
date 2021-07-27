@@ -10,7 +10,7 @@ namespace WebApplication4.Controllers
     public class ReportController : ApiController
     {
         [HttpGet]
-        [Route("api/GenerateReport")]
+        [Route("api/GenerateReport/Attendence")]
         public HttpResponseMessage Get(string type, bool AllGrades, string period, string gradeName)
         {
             int Attended = 0, AttendencePercentage = 0, ssID = 0;
@@ -96,6 +96,12 @@ namespace WebApplication4.Controllers
             }
             AttendencePercentage = (Attended * 100) / list.Count();
             return Request.CreateResponse(HttpStatusCode.OK, message + AttendencePercentage + "%");
+        }
+        [HttpGet]
+        [Route("api/GenerateReport/TeacherNeed")]
+        public HttpResponseMessage GenerateTeacherNeedReport()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

@@ -27,8 +27,9 @@ namespace WebApplication4
                 }
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 identity.AddClaim(new Claim(ClaimTypes.Role, user.type));
-                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.user_id.ToString()));
-                //identity.AddClaim(new Claim("Email", user.UserEmailID));  
+                identity.AddClaim(new Claim(ClaimTypes.Name, (string)user.user_id.ToString()));
+                identity.AddClaim(new Claim("Type", user.type));
+                identity.AddClaim(new Claim("Password", user.password));
 
                 context.Validated(identity);
             }

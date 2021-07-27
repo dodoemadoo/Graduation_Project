@@ -10,13 +10,17 @@ namespace WebApplication4.Controllers
 {
     public class LoginController : ApiController
     {
+        [Authorize(Roles = "admin,student,parent,teacher")]
         [HttpPost]
         [Route("api/Login")]
-        public HttpResponseMessage Post([FromBody] User login)
+        public HttpResponseMessage Post()
         {
             using (UserEntities userEntity = new UserEntities())
             {
-                User user = userEntity.Users.FirstOrDefault(e => e.user_id == login.user_id && e.password.Equals(login.password));
+                var identity = (ClaimsIdentity)User.Identity;
+                int id = int.Parse(identity.Name);
+                string password = identity.FindFirst("Password").Value.ToString();
+                User user = userEntity.Users.FirstOrDefault(e => e.user_id == id && e.password.Equals(password));
                 if (user != null)
                 {
                     using (UserEntities context = new UserEntities())
@@ -36,7 +40,7 @@ namespace WebApplication4.Controllers
                                 password = user_id.password,
                                 type = user_id.type
                             }
-                        ).Where(e => e.S_user_id == login.user_id).ToList();
+                        ).Where(e => e.S_user_id == id).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, data);
                         }
                         else if (user.type == "admin")
@@ -54,7 +58,7 @@ namespace WebApplication4.Controllers
                                 password = user_id.password,
                                 type = user_id.type
                             }
-                        ).Where(e => e.A_user_id == login.user_id).ToList();
+                        ).Where(e => e.A_user_id == id).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, data);
                         }
                         else if (user.type == "teacher")
@@ -72,7 +76,7 @@ namespace WebApplication4.Controllers
                                 password = user_id.password,
                                 type = user_id.type
                             }
-                        ).Where(e => e.S_user_id == login.user_id).ToList();
+                        ).Where(e => e.S_user_id == id).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, data);
                         }
                         else
@@ -90,7 +94,7 @@ namespace WebApplication4.Controllers
                                 password = user_id.password,
                                 type = user_id.type
                             }
-                        ).Where(e => e.S_user_id == login.user_id).ToList();
+                        ).Where(e => e.S_user_id == id).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, data);
                         }
                     }

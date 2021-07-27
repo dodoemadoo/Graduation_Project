@@ -301,3 +301,13 @@ C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.dll
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.pdb
 C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.csproj.AssemblyReference.cache
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\obj\Debug\WebApplication4.csproj.App.config
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\System.Net.Http.dll
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\System.Net.Http.Extensions.dll
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\System.Net.Http.Primitives.dll
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\System.Security.Cryptography.Algorithms.dll
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\System.Security.Cryptography.Encoding.dll
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\System.Security.Cryptography.Primitives.dll
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\System.Security.Cryptography.X509Certificates.dll
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\System.Net.Http.Extensions.xml
+C:\Users\andre\OneDrive\Documents\GitHub\Graduation_Project\WebApplication4\bin\System.Net.Http.Primitives.xml
