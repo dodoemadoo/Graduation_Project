@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class RoutesController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Routes")]
         public HttpResponseMessage Get()
@@ -21,6 +22,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Routes")]
         public HttpResponseMessage Get(int id)
@@ -40,6 +42,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Routes")]
         public HttpResponseMessage Post([FromBody] Route R)
@@ -63,6 +66,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         [Route("api/Routes")]
         public HttpResponseMessage Delete(int id)
@@ -91,6 +95,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Routes")]
         public HttpResponseMessage Put(int id, [FromBody] Route R)

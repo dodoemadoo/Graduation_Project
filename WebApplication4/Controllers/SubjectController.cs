@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class SubjectController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Subject")]
         public HttpResponseMessage Get()
@@ -20,6 +21,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Subject")]
         public HttpResponseMessage Get(int sub_id)
@@ -39,6 +41,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Subject")]
         public HttpResponseMessage Post([FromBody] Subject sub)
@@ -62,6 +65,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         [Route("api/Subject")]
         public HttpResponseMessage Delete(int sub_id)
@@ -90,6 +94,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Subject")]
         public HttpResponseMessage Put(int sub_id, [FromBody] Subject s)
@@ -125,6 +130,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Subject/GetGradeSubjects")]
         public HttpResponseMessage GetGradeSubjects(int gradeID)

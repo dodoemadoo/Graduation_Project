@@ -10,7 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class MessageController : ApiController
     {
-
+        [Authorize(Roles = "admin,student,parent,teacher")]
         [HttpGet]
         [Route("api/Message/Get_sent_messages")]
         public HttpResponseMessage Get_sent_messages(int sender_id)
@@ -30,6 +30,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,student,parent,teacher")]
         [HttpGet]
         [Route("api/Message/Get_recieved_messages")]
         public HttpResponseMessage Get_recieved_messages(int reciever_id)
@@ -49,6 +50,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,student,parent,teacher")]
         [HttpPost]
         [Route("api/Message")]
         public HttpResponseMessage Post([FromBody] Messages m)
@@ -78,6 +80,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,student,parent,teacher")]
         [HttpDelete]
         [Route("api/Message")]
         public HttpResponseMessage Delete(int msg_id)

@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class BusController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Bus")]
         public HttpResponseMessage Get()
@@ -21,6 +22,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Bus")]
         public HttpResponseMessage Get(int id)
@@ -40,6 +42,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Bus")]
         public HttpResponseMessage Post([FromBody] Bus B)
@@ -63,6 +66,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         [Route("api/Bus")]
         public HttpResponseMessage Delete(int id)
@@ -91,6 +95,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Bus")]
         public HttpResponseMessage Put(int id, [FromBody] Bus B)
@@ -119,6 +124,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Bus/BusAllocation")]
         public HttpResponseMessage BusAllocation(int routeID, [FromBody] string busPlatNo)

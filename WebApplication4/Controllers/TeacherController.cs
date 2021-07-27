@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class TeacherController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Teacher")]
         public HttpResponseMessage Get()
@@ -21,6 +22,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Teacher")]
         public HttpResponseMessage Get(int id)
@@ -40,6 +42,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Teacher")]
         public HttpResponseMessage Post([FromBody] Teacher T)
@@ -63,6 +66,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         [Route("api/Teacher")]
         public HttpResponseMessage Delete(int id)
@@ -91,6 +95,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Teacher")]
         public HttpResponseMessage Put(int id, [FromBody] Teacher T)
@@ -123,6 +128,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Teacher/TeacherToClass")]
         public HttpResponseMessage TeacherToClass([FromBody] schedule obj)
@@ -159,6 +165,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Teacher/TeacherToSubject")]
         public HttpResponseMessage TeacherToSubject([FromBody]T_S obj)

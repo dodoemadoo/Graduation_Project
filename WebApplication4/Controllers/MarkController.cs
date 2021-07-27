@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class MarkController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Mark")]
         public HttpResponseMessage Get()
@@ -21,6 +22,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,student,parent,teacher")]
         [HttpGet]
         [Route("api/Mark")]
         public HttpResponseMessage Get(int mark_id)
@@ -40,6 +42,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,teacher")]
         [HttpPost]
         [Route("api/Mark")]
         public HttpResponseMessage Post([FromBody] mark m)
@@ -63,6 +66,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,teacher")]
         [HttpDelete]
         [Route("api/Mark")]
         public HttpResponseMessage Delete(int mark_id)
@@ -91,6 +95,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,teacher")]
         [HttpPut]
         [Route("api/Mark")]
         public HttpResponseMessage Put(int mark_id, [FromBody] mark m)

@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class AttendenceController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Attendence")]
         public HttpResponseMessage Get()
@@ -21,6 +22,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,teacher")]
         [HttpGet]
         [Route("api/Attendence")]
         public HttpResponseMessage Get(int att_id)
@@ -40,6 +42,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "teacher")]
         [HttpPost]
         [Route("api/Attendence")]
         public HttpResponseMessage Post([FromBody] Attendance att)
@@ -63,6 +66,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "teacher")]
         [HttpDelete]
         [Route("api/Attendence")]
         public HttpResponseMessage Delete(int att_id)
@@ -91,6 +95,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "teacher")]
         [HttpPut]
         [Route("api/Attendence")]
         public HttpResponseMessage Put(int att_id, [FromBody] Attendance att)

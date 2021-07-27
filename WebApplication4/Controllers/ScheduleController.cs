@@ -9,6 +9,7 @@ namespace WebApplication4.Controllers
 {
     public class ScheduleController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Schedule/Validate")]
         public HttpResponseMessage ValidateSlot(schedule slot)
@@ -34,6 +35,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,teacher,student,parent")]
         [HttpGet]
         [Route("api/Schedule")]
         public HttpResponseMessage getClassSchedule(int class_ID)
@@ -82,6 +84,7 @@ namespace WebApplication4.Controllers
             }*/
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Schedule/Insert")]
         public HttpResponseMessage InsertSlot([FromBody]schedule slot)
@@ -125,6 +128,7 @@ namespace WebApplication4.Controllers
 
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Schedule/Update")]
         public HttpResponseMessage updateSlot(int slot_id, [FromBody] schedule slot)
@@ -162,6 +166,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         [Route("api/Schedule/Update")]
         public HttpResponseMessage deleteSlot(int slot_id)

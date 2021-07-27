@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class ClassController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Class")]
         public HttpResponseMessage Get()
@@ -32,6 +33,7 @@ namespace WebApplication4.Controllers
                 }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Class")]
         public HttpResponseMessage Get(int id)
@@ -62,6 +64,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Class")]
         public HttpResponseMessage Post([FromBody] Class c)
@@ -85,6 +88,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Class")]
         public HttpResponseMessage Put(int id, [FromBody] Class c)
@@ -116,6 +120,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         [Route("api/Class")]
         public HttpResponseMessage Delete(int id)
@@ -144,6 +149,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Class/Get_nonAssigned_classes")]
         public HttpResponseMessage Get_nonAssigned_classes()
@@ -154,6 +160,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Class/Get_Classes_for_Grade")]
         public HttpResponseMessage Get_Classes_for_Grade()

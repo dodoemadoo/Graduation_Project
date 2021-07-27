@@ -9,6 +9,7 @@ namespace WebApplication4.Controllers
 {
     public class ClassListController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/ClassList/GetAlphabetically")]
         public List<List<Student>> GetAlphabetically(bool isAlphabetical, List<List<Student>> list, int _grade)
@@ -63,6 +64,7 @@ namespace WebApplication4.Controllers
 
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/ClassList/bySecondLanguage")]
         public List<List<Student>> GetBySecondLanguage(bool isBySecondlanguage)
@@ -122,6 +124,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/ClassList/byGender")]
         public List<List<Student>> GetByGender(List<List<Student>> students, int _grade, bool isByGender)
@@ -178,6 +181,7 @@ namespace WebApplication4.Controllers
                 return students;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/ClassList")]
         public HttpResponseMessage MakeClassList([FromBody]string grade, bool isAlphabetical, bool isBySecondlanguage, bool isByGender)
@@ -324,6 +328,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/ClassList/Get_capacity")]
         public HttpResponseMessage Get_capacity([FromBody] int gradeID)

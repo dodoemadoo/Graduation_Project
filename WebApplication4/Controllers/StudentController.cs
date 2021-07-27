@@ -9,6 +9,7 @@ namespace WebApplication4.Controllers
 {
     public class StudentController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Student/UpdateStudentGrade")]
         public HttpResponseMessage UpdateStudentGrade()
@@ -35,6 +36,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin,teacher")]
         [HttpGet]
         [Route("api/Student/GetClassStudents")]
         public HttpResponseMessage GetClassStudents(int classID)

@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class DriverAllocationController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Driver")]
         public HttpResponseMessage Get()
@@ -21,6 +22,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Driver")]
         public HttpResponseMessage Get(int driver_id)
@@ -40,6 +42,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Driver")]
         public HttpResponseMessage Post([FromBody] Driver driver)
@@ -63,6 +66,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         [Route("api/Driver")]
         public HttpResponseMessage Delete(int driver_id)
@@ -91,6 +95,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Driver")]
         public HttpResponseMessage Put(int driver_id, [FromBody] Driver driver)
@@ -119,6 +124,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Driver/DriverAllocation")]
         public HttpResponseMessage Post([FromBody] int driverID, [FromUri]int busID)

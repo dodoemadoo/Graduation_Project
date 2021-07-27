@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class GradeController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Grade")]
         public HttpResponseMessage Get()
@@ -21,6 +22,9 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
+        [HttpGet]
+        [Route("api/Grade")]
         public HttpResponseMessage Get(int grade_id)
         {
             using (GradeEntities entities = new GradeEntities())
@@ -38,6 +42,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("api/Grade")]
         public HttpResponseMessage Post([FromBody] Grade grade)
@@ -61,6 +66,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         [Route("api/Grade")]
         public HttpResponseMessage Delete(int grade_id)
@@ -89,6 +95,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Grade")]
         public HttpResponseMessage Put(int grade_id, [FromBody] Grade grade)

@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class ComplainController : ApiController
     {
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Complain")]
         public HttpResponseMessage Get()
@@ -21,6 +22,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("api/Complain")]
         public HttpResponseMessage Get(int comp_id)
@@ -40,6 +42,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "student")]
         [HttpPost]
         [Route("api/Complain")]
         public HttpResponseMessage Post([FromBody] Complain comp)
@@ -63,6 +66,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("api/Complain")]
         public HttpResponseMessage Put(int comp_id, [FromBody] Complain comp)
@@ -93,6 +97,7 @@ namespace WebApplication4.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         [Route("api/Complain")]
         public HttpResponseMessage Delete(int comp_id)
