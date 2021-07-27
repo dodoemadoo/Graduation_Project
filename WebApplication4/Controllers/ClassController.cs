@@ -26,7 +26,9 @@ namespace WebApplication4.Controllers
                                     c.class_name,
                                     c.class_capacity,
                                     c.class_Type,
+                                    b.building_ID,
                                     b.building_Name,
+                                    g.grade_id,
                                     g.grade_Name
                                 };
                     return Request.CreateResponse(HttpStatusCode.OK, query.ToList());
@@ -50,7 +52,9 @@ namespace WebApplication4.Controllers
                                 c.class_name,
                                 c.class_capacity,
                                 c.class_Type,
+                                b.building_ID,
                                 b.building_Name,
+                                g.grade_id,
                                 g.grade_Name
                             };
                 if (query != null && query.ToList().Count != 0)

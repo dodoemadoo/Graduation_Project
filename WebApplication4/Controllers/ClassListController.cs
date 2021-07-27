@@ -219,15 +219,13 @@ namespace WebApplication4.Controllers
                                         studentlist.RemoveRange(0, Math.Min(c.class_capacity, studentlist.Count));
                                         //students.RemoveRange(0, c.class_capacity);
                                         classes.Remove(c);
-
-                                        //return Request.CreateResponse(HttpStatusCode.OK,studentlist);
                                     }
                                     InsertStudentsClass(assignedClasses);
                                     return Request.CreateResponse(HttpStatusCode.OK, assignedClasses);
                                 }
                             }
                             else
-                                return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of classes dosen't match your criteria");
+                                return Request.CreateResponse(HttpStatusCode.BadRequest,"Number of students not assigned to  class: " + Get_capacity(_grade.grade_id).Content.ReadAsStringAsync().Result);
                         }
                         else
                         {
@@ -236,7 +234,8 @@ namespace WebApplication4.Controllers
                             var byAlphabetical = GetAlphabetically(isAlphabetical, byGender, _grade.grade_id);
                             if (classes.Count < byAlphabetical.Count)
                             {
-                                return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of classes dosen't match your criteria");
+                                int diff = byAlphabetical.Count - classes.Count;
+                                return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of class list is more than the number of assigned classes: "+ diff);
                             }
                             else
                             {
@@ -295,7 +294,7 @@ namespace WebApplication4.Controllers
 
                                 }
                                 if (students.Count != 0)
-                                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of classes dosen't match your criteria");
+                                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Number of students not assigned to  class: "+students.Count);
                                 else
                                 {
                                     InsertStudentsClass(assignedClasses);
