@@ -14,23 +14,30 @@ namespace WebApplication4.Controllers
         [Route("api/Schedule/Validate")]
         public HttpResponseMessage ValidateSlot(schedule slot)
         {
-            using (ScheduleEntities schedule = new ScheduleEntities())
+            using (ScheduleJoinEntities temp = new ScheduleJoinEntities())
             {
-                using (T_SEntities obj = new T_SEntities())
+                using (ScheduleEntities schedule = new ScheduleEntities())
                 {
-                    var teacher = obj.T_S.FirstOrDefault(t => t.T_S_ID == slot.teacher_subject_ID);
-                    var teacherSubjects = obj.T_S.Where(t => t.teacher_ID == teacher.teacher_ID).ToList();
-                    List<int> teacherSubjectsIDs = new List<int>();
-                    for (int i = 0; i < teacherSubjects.Count(); i++)
+                    using (T_SEntities obj = new T_SEntities())
                     {
-                        teacherSubjectsIDs.Add(teacherSubjects.ElementAt(i).T_S_ID);
+                        var teacher = obj.T_S.FirstOrDefault(t => t.T_S_ID == slot.teacher_subject_ID);
+                        var teacherSubjects = obj.T_S.Where(t => t.teacher_ID == teacher.teacher_ID).ToList();
+                        var query = (from obj1 in temp.T_S
+                                     join obj2 in temp.Subjects on obj1.subject_ID equals obj2.subject_id
+                                     where obj1.teacher_ID == teacher.teacher_ID
+                                     select obj2.classes_per_week).Sum();
+                        List<int> teacherSubjectsIDs = new List<int>();
+                        for (int i = 0; i < teacherSubjects.Count(); i++)
+                        {
+                            teacherSubjectsIDs.Add(teacherSubjects.ElementAt(i).T_S_ID);
+                        }
+                        var firstCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && s.class_ID == slot.class_ID && s.semester == slot.semester).ToList();
+                        var secondCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && teacherSubjectsIDs.Contains((int)s.teacher_subject_ID) && s.semester == slot.semester).ToList();
+                        if (firstCondition.Count != 0 || secondCondition.Count != 0 || query > 20)
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, false);
+                        else
+                            return Request.CreateResponse(HttpStatusCode.OK, true);
                     }
-                    var firstCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && s.class_ID == slot.class_ID && s.semester == slot.semester).ToList();
-                    var secondCondition = schedule.schedules.Where(s => s.slot_ID == slot.slot_ID && s.week_Day == slot.week_Day && teacherSubjectsIDs.Contains((int)s.teacher_subject_ID) && s.semester == slot.semester).ToList();
-                    if (firstCondition.Count != 0 || secondCondition.Count != 0)
-                        return Request.CreateResponse(HttpStatusCode.BadRequest, false);
-                    else
-                        return Request.CreateResponse(HttpStatusCode.OK, true);
                 }
             }
         }

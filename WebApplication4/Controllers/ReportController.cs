@@ -104,6 +104,18 @@ namespace WebApplication4.Controllers
         [Route("api/GenerateReport/TeacherNeed")]
         public HttpResponseMessage GenerateTeacherNeedReport()
         {
+            using(SubjectEntities subject = new SubjectEntities())
+            {
+                using (T_SEntities ts = new T_SEntities())
+                { 
+                    List<KeyValuePair<Subject, int>> need = new List<KeyValuePair<Subject, int>>();
+                    var subjects = subject.Subjects.ToList();
+                    for (int i = 0; i < subjects.Count; i++)
+                    {
+                        var subjectTeahers = ts.T_S.Where(t => t.subject_ID == subjects.ElementAt(i).subject_id).ToList();
+                    }
+                }
+            }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
